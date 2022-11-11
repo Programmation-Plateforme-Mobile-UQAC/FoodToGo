@@ -10,7 +10,7 @@ import com.example.foodtogo.R;
 
 import org.jetbrains.annotations.Nullable;
 
-public class AddProduct extends AppCompatActivity  {
+public class AddProductActivity extends AppCompatActivity  {
     ImageButton imageButton1, imageButton2, imageButton3;
     EditText foodTypeEdit, namePostEdit, productDescriptionEdit, expirationDateEdit;
     Button addPostButton;

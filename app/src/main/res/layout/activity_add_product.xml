@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4add6a"
-    tools:context=".ui.product.AddProduct">
+    tools:context=".ui.product.AddProductActivity">
 
     <EditText
         android:id="@+id/expirationDateEdit"
@@ -39,9 +39,12 @@
         android:layout_height="88dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_image" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -49,9 +52,12 @@
         android:layout_height="88dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="65dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toEndOf="@+id/imageButton1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_image" />
 
     <ImageButton
         android:id="@+id/imageButton1"
@@ -59,9 +65,12 @@
         android:layout_height="88dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="65dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_image" />
 
     <TextView
         android:id="@+id/foodTypeView"
@@ -152,5 +161,6 @@
         android:text="@string/addPost"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
