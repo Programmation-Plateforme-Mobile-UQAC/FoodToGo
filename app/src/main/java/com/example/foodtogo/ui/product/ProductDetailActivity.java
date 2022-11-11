@@ -20,13 +20,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void setProductDetailInfo(){
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            binding.productDetailDescriptionText.setText(extras.getString("PRODUCT_DESCRIPTION"));
-            binding.productdetailPublishedText.setText(extras.getString("PRODUCT_PUBLISH_DATE"));
-            binding.productdetailByText.setText(extras.getString("PRODUCT_PUBLISHER_NAME"));
-            binding.productdetailExpiresOnText.setText(extras.getString("PRODUCT_EXPIRE_DATE"));
-            binding.ratingBar.setRating(extras.getFloat("PRODUCT_RATING_VALUE", 0.0f));
-        }
+        binding.productDetailDescriptionText.setText(getIntent().getStringExtra("PRODUCT_DESCRIPTION"));
+        binding.productdetailPublishedText.setText(getIntent().getStringExtra("PRODUCT_PUBLISH_DATE"));
+        binding.productdetailByText.setText(getIntent().getStringExtra("PRODUCT_PUBLISHER_NAME"));
+        binding.productdetailExpiresOnText.setText(getIntent().getStringExtra("PRODUCT_EXPIRE_DATE"));
+        binding.ratingBar.setRating(getIntent().getFloatExtra("PRODUCT_RATING_VALUE", 0.0f));
     }
 }
