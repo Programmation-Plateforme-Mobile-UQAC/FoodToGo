@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4add6a"
+    tools:context=".ui.product.AddProduct">
+
+    <EditText
+        android:id="@+id/expirationDateEdit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="@string/expirationDateHint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/addPostButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/expirationDateView" />
+
+    <EditText
+        android:id="@+id/namePostEdit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="26dp"
+        android:ems="10"
+        android:hint="@string/namePostHint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodTypeEdit" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="132dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/placeholderText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="132dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="65dp"
+        android:contentDescription="@string/placeholderText"
+        app:layout_constraintStart_toEndOf="@+id/imageButton1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="132dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="65dp"
+        android:contentDescription="@string/placeholderText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/foodTypeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="52dp"
+        android:text="@string/foodTypeView"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/foodTypeEdit"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton1" />
+
+    <TextView
+        android:id="@+id/namePostView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/namePostView"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/namePostEdit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodTypeView" />
+
+    <TextView
+        android:id="@+id/expirationDateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/expirationDateView"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/addPostButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/productDescriptionEdit"
+        android:layout_width="344dp"
+        android:layout_height="234dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/productDescriptionViewHint"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionView" />
+
+    <TextView
+        android:id="@+id/productDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="252dp"
+        android:text="@string/productDescriptionView"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namePostView" />
+
+    <EditText
+        android:id="@+id/foodTypeEdit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="11dp"
+        android:ems="10"
+        android:hint="@string/foodTypeHint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/namePostEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/addPostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#447CEC"
+        android:text="@string/addPost"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

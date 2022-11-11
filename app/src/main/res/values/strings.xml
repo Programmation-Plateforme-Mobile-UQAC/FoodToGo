@@ -11,4 +11,16 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="placeholderText">Ajouter une image</string>
+    <string name="reserver">reserver</string>
+    <string name="expirationDateView">Date d\'expiration :</string>
+    <string name="namePostView">Nom de l\'annonce :</string>
+    <string name="productDescriptionView">Description du produit :</string>
+    <string name="foodTypeView">Type d\'aliment :</string>
+    <string name="addPost">Ajouter une annonce</string>
+
+    <string name="productDescriptionViewHint">Ajouter une despricption du produit</string>
+    <string name="foodTypeHint">produit…</string>
+    <string name="expirationDateHint">01/01/1999</string>
+    <string name="namePostHint">annonce…</string>
 </resources>
