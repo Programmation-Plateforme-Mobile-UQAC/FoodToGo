@@ -2,11 +2,9 @@ package com.example.foodtogo.data.model;
 
 import com.orm.SugarRecord;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.UUID;
 
-public class Product extends SugarRecord {
+public class Product extends SugarRecord<Product> {
     private UUID id;
     private UUID user_id;
     private UUID category_id;
@@ -14,10 +12,12 @@ public class Product extends SugarRecord {
     private String summary;
     private String image;
 
-    public Product(@NotNull UUID id, @NotNull UUID user_id, @NotNull UUID category_id,
-                   @NotNull String title, @NotNull String summary, @NotNull String image) {
-        this.category_id = category_id;
-        this.id = id;
+    public Product(UUID id, UUID user_id, UUID category_id,
+                    String title, String summary, String image) {
+
+        if (Category.findById(Category.class, category_id.node()) != null){
+            this.category_id = category_id;
+        }
 
         if (User.findById(User.class, user_id.node()) != null){
             this.user_id = user_id;
@@ -26,10 +26,8 @@ public class Product extends SugarRecord {
         this.title = title;
         this.summary = summary;
         this.image = image;
+        this.id = id;
     }
-
-
-
 
     public String getImage() {
         return image;
@@ -47,10 +45,6 @@ public class Product extends SugarRecord {
         return category_id;
     }
 
-    public Long getId() {
-        return id.node();
-    }
-
     public UUID getUser_id() {
         return user_id;
     }
@@ -58,7 +52,6 @@ public class Product extends SugarRecord {
     public void setCategory_id(UUID category_id) {
         this.category_id = category_id;
     }
-
 
     public void setId(UUID id) {
         this.id = id;
