@@ -1,14 +1,47 @@
 package com.example.foodtogo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 
-import org.jetbrains.annotations.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.foodtogo.databinding.ActivityMainBinding;
+import com.example.foodtogo.ui.AddFragment;
+import com.example.foodtogo.ui.HomeFragment;
+
 
 public class MainActivity extends AppCompatActivity {
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    ActivityMainBinding mainBinding;
+
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_login);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        View v = mainBinding.getRoot();
+        this.setContentView(v);
+
+        mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
+        replaceFragment(new HomeFragment());
+
+        mainBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.home){
+                replaceFragment(new HomeFragment());
+            }
+
+            if (item.getItemId() == R.id.add){
+                replaceFragment(new AddFragment(mainBinding));
+            }
+
+            return true;
+        });
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
     }
 }

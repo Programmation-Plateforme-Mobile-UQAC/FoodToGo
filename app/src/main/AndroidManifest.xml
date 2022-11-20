@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -24,7 +27,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="test.db" />
+            android:value="test1.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />

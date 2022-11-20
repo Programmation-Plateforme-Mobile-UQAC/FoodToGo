@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_product_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_product_card,parent,false);
         return new ProductHolder(view);
     }
 
@@ -60,7 +61,8 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
         public void setDetails(Product product){
             productName.setText(product.getTitle());
-            productImage.setImageBitmap(decode64BitImage(product.getImage()));
+            if (product.getImage() != null)
+                productImage.setImageBitmap(decode64BitImage(product.getImage()));
         }
 
         private Bitmap decode64BitImage(String encodedString){

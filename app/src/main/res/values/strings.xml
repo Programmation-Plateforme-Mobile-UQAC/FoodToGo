@@ -40,6 +40,6 @@
     <string name="productDetailReviewView">Review</string>
     <string name="productDetailRatingBarView">Review</string>
 
-
+    <string name="productListEmptyMessage">Aucun produit n\'est disponible</string>
 
 </resources>
