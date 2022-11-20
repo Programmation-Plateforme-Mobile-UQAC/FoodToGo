@@ -53,5 +53,6 @@ public class OrderDetailFragment extends Fragment {
         if (User.findById(User.class, Order.convertToLong(product.getUser_id())) != null)
             binding.productdetailByText.setText(User.findById(User.class, Order.convertToLong(product.getUser_id())).getUsername());
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
+        binding.productdetailPublishedText.setText(Order.convertDateToString(product.getCreated_at()));
     }
 }

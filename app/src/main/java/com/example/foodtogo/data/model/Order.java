@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
@@ -51,6 +52,7 @@ public class Order extends SugarRecord<Order> {
         this.summary = summary;
         this.image = image == null ? "" : image;
         this.expirationDate = convertStringToDate(expirationDate);
+        this.created_at = new Date(System.currentTimeMillis());
     }
 
     public static Long convertToLong(UUID id){
@@ -89,6 +91,10 @@ public class Order extends SugarRecord<Order> {
 
     public String getExpirationDate() {
         return convertDateToString(expirationDate);
+    }
+
+    public Date getCreated_at() {
+        return created_at;
     }
 
     public UUID getBuy_by() {
@@ -139,12 +145,12 @@ public class Order extends SugarRecord<Order> {
         this.status = status;
     }
 
-    private String convertDateToString(Date date){
+    public static String convertDateToString(Date date){
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("ca", "CA"));
         return dateFormat.format(date);
     }
 
-    private Date convertStringToDate(String date) throws ParseException {
+    public static Date convertStringToDate(String date) throws ParseException {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("ca", "CA"));
         return dateFormat.parse(date);
     }

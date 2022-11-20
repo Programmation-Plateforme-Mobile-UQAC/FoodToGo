@@ -21,7 +21,7 @@
 
     <string name="productDescriptionViewHint">Ajouter une despricption du produit</string>
     <string name="foodTypeHint">produit…</string>
-    <string name="expirationDateHint">01/01/1999</string>
+    <string name="expirationDateHint">yyyy-mm-dd</string>
     <string name="namePostHint">annonce…</string>
 
     <string name="productImageViewString">Product Image</string>
