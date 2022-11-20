@@ -2,14 +2,9 @@ package com.example.foodtogo.ui;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,20 +21,19 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodtogo.R;
-import com.example.foodtogo.data.model.Product;
-import com.example.foodtogo.databinding.ActivityAddProductBinding;
+import com.example.foodtogo.data.model.Order;
+import com.example.foodtogo.databinding.ActivityAddOrderBinding;
 import com.example.foodtogo.databinding.ActivityMainBinding;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.Base64;
+import java.text.ParseException;
 import java.util.UUID;
 
 public class AddFragment extends Fragment {
-    ActivityAddProductBinding binding;
+    ActivityAddOrderBinding binding;
     ActivityMainBinding mainBinding;
 
-    Product product = null;
+    Order order = null;
     boolean cameraIsGranted = false;
     boolean externalStorageIsGranted = false;
 
@@ -87,20 +81,27 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = ActivityAddProductBinding.inflate(inflater, container, false);
+        binding = ActivityAddOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         binding.addPostButton.setOnClickListener(view1 -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                product = new Product(UUID.randomUUID(), UUID.randomUUID(),
-                        binding.namePostEdit.getText().toString(), binding.productDescriptionEdit.getText().toString(),
-                        null);
+                try {
+                    order = new Order(UUID.randomUUID(), UUID.randomUUID(),
+                            binding.namePostEdit.getText().toString(),
+                            binding.foodTypeEdit.getText().toString()
+                            ,binding.productDescriptionEdit.getText().toString(),
+                            null, binding.expirationDateEdit.getText().toString());
+                    order.save();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
-            product.save();
 
             mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
         });
@@ -124,8 +125,6 @@ public class AddFragment extends Fragment {
             requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
-
-
 
     private byte[] bitmapToByteArray(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

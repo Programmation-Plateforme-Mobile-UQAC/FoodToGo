@@ -10,11 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodtogo.R;
-import com.example.foodtogo.databinding.FragmentProductCardBinding;
+import com.example.foodtogo.databinding.FragmentOrderCardBinding;
 
-public class ProductCardFragment extends Fragment {
-    FragmentProductCardBinding binding;
+public class OrderCardFragment extends Fragment {
+    FragmentOrderCardBinding binding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +22,7 @@ public class ProductCardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentProductCardBinding.inflate(inflater, container, false);
+        binding = FragmentOrderCardBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.foodtogo.databinding.ActivityProductDetailBinding;
+import com.example.foodtogo.databinding.ActivityOrderDetailBinding;
 
-public class ProductDetailActivity extends AppCompatActivity {
-    ActivityProductDetailBinding binding;
+public class OrderDetailActivity extends AppCompatActivity {
+    ActivityOrderDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityOrderDetailBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         setProductDetailInfo();

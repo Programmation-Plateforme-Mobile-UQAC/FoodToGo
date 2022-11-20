@@ -9,20 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.adapters.ProductRecycleViewAdapter;
-import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.data.model.Order;
 import com.example.foodtogo.databinding.FragmentHomeBinding;
-import com.example.foodtogo.databinding.FragmentProductCardEmptyBinding;
+import com.example.foodtogo.databinding.FragmentOrderCardEmptyBinding;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    ArrayList<Product> productList;
+    ArrayList<Order> productList;
     FragmentHomeBinding binding;
-    FragmentProductCardEmptyBinding cardEmptyBinding;
+    FragmentOrderCardEmptyBinding cardEmptyBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,13 +32,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         try {
-            productList = new ArrayList<>(Product.listAll(Product.class));
+            productList = new ArrayList<>(Order.listAll(Order.class));
         }catch (java.lang.RuntimeException exception){
             productList = new ArrayList<>();
         }
 
         if (productList.isEmpty()){
-            cardEmptyBinding = FragmentProductCardEmptyBinding.inflate(inflater, container, false);
+            cardEmptyBinding = FragmentOrderCardEmptyBinding.inflate(inflater, container, false);
             return cardEmptyBinding.getRoot();
         }
 
