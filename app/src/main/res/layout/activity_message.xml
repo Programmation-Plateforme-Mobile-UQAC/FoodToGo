@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent"
-    android:background="@drawable/main_background">
+    android:layout_height="match_parent"
+    android:background="@drawable/add_product_background">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -17,46 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-    <Spinner
-        android:id="@+id/filter"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="25dp"
-        android:contentDescription="Filtre à contenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/sort"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="trieur de contenu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:layout_width="161dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/filter"
-        app:layout_constraintStart_toEndOf="@+id/sort"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/Categories"
-        android:layout_width="154dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="24dp"
-        android:clickable="true"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Catégories :"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sort" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="223dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="56dp"
+        android:text="Mes messages"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="94dp" />
 
     <ImageButton
         android:id="@+id/image_categorie1"
