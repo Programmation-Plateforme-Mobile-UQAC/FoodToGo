@@ -15,13 +15,13 @@
         tools:targetApi="31"
         tools:replace="android:icon">
 
-        <meta-data android:name="DATABASE" android:value="test.db" />
+        <meta-data android:name="DATABASE" android:value="test1.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example" />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.authenticated.LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
