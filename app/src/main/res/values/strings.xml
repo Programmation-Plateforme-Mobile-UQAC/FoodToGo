@@ -2,6 +2,8 @@
     <string name="app_name">FoodToGo</string>
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
+    <string name="prompt_first_name">FirstName</string>
+    <string name="prompt_lastName">LastName</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -21,7 +23,7 @@
 
     <string name="productDescriptionViewHint">Ajouter une despricption du produit</string>
     <string name="foodTypeHint">produit…</string>
-    <string name="expirationDateHint">yyyy-mm-dd</string>
+    <string name="expirationDateHint">01/01/1999</string>
     <string name="namePostHint">annonce…</string>
 
     <string name="productImageViewString">Product Image</string>
