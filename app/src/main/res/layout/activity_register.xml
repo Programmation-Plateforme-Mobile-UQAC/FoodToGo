@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="76dp"
-        android:backgroundTint="#7CB342"
+        android:backgroundTint="#9C9C9C"
         android:backgroundTintMode="add"
         android:text="Connexion"
         app:layout_constraintEnd_toStartOf="@+id/button2"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
-        android:backgroundTint="#9C9C9C"
+        android:backgroundTint="#7CB342"
         android:backgroundTintMode="add"
         android:text="Inscription"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="250dp"
         app:boxStrokeColor="#7CB342"
         app:endIconTint="#7CB342"
         app:hintTextColor="#7CB342"
@@ -85,11 +85,34 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Mot de passe"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        app:boxStrokeColor="#7CB342"
+        app:endIconTint="#7CB342"
+        app:hintTextColor="#7CB342"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:passwordToggleEnabled="true"
+        app:startIconTint="#7CB342">
 
+        <EditText
+            android:id="@+id/etconfirm_Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="Confirmez mot de passe"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
