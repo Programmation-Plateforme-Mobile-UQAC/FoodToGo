@@ -1,5 +1,4 @@
 package com.example.foodtogo.data.service;
-import androidx.room.Room;
 
 import com.example.foodtogo.data.model.User;
 import java.util.List;

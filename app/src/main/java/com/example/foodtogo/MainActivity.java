@@ -15,7 +15,6 @@ import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
-import com.example.foodtogo.data.viewmodel.UserViewModel;
 import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.AddFragment;
 import com.example.foodtogo.ui.HomeFragment;
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         "Peche",
                         "Tomate",
                 };
-                while (i <= 4) {
+                while (i < 4) {
                     Category cat_selected = categories.get(0);
                     try {
                         Product new_order = new Product(

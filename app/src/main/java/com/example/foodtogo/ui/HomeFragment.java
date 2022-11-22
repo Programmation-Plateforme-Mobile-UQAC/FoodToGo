@@ -61,5 +61,18 @@ public class HomeFragment extends MyFragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (!productList.isEmpty()){
+            ProductRecycleViewAdapter productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList);
+
+            RecyclerView recyclerView = binding.productRecycleView;
+            recyclerView.setAdapter(productRecycleViewAdapter);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            recyclerView.setHasFixedSize(true);
+        } else
+            binding.orderViewStub.inflate();
+    }
 
 }

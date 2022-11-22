@@ -32,7 +32,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="productDetailBackButton">Back button</string>
-    <string name="productDetailPublishedByView">Publié par :</string>
+    <string name="productDetailPublishedByView">Publié le :</string>
     <string name="productDetailExpiresOn">Perimé le :</string>
     <string name="productDetailBy">Par :</string>
     <string name="productDetailDescriptionHint">Description produit</string>

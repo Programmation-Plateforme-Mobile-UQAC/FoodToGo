@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -109,8 +110,10 @@ public class AddFragment extends MyFragment {
                             ,binding.productDescriptionEdit.getText().toString(),
                             "", binding.expirationDateEdit.getText().toString());
                     order.save();
+                    Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Echec de l'ajout du produit", Toast.LENGTH_SHORT).show();
                 }
             }
 

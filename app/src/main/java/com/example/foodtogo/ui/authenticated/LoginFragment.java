@@ -16,7 +16,6 @@ import com.example.foodtogo.R;
 import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
-import com.example.foodtogo.data.viewmodel.UserViewModel;
 import com.example.foodtogo.databinding.ActivityLoginBinding;
 import com.example.foodtogo.ui.HomeFragment;
 

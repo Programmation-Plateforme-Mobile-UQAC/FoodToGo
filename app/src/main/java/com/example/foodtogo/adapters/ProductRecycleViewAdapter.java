@@ -41,7 +41,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             Product product = products.get(holder.getAdapterPosition() + 1);
 
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new OrderDetailFragment(product)).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
         });
         return new ProductHolder(view);
     }

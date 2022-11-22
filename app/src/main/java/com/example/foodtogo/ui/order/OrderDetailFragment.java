@@ -16,6 +16,9 @@ import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.databinding.ActivityOrderDetailBinding;
 import com.example.foodtogo.ui.HomeFragment;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class OrderDetailFragment extends Fragment {
     ActivityOrderDetailBinding binding;
     Product product;
@@ -46,13 +49,13 @@ public class OrderDetailFragment extends Fragment {
 
         binding.productDetailBackButton.setOnClickListener(l -> {
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new HomeFragment()).commit();
         });
 
         binding.productDetailDescriptionText.setText(product.getSummary());
         if (User.findById(User.class, product.user_id) != null)
             binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
-        binding.productdetailPublishedText.setText(Long.toString(product.getCreated_at()));
+        binding.productdetailPublishedText.setText(DateFormat.getDateInstance().format(new Date(product.getCreated_at())));
     }
 }
