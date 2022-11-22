@@ -11,9 +11,9 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class Order extends SugarRecord<Order> {
-    private long user_id;
-    private long category_id;
-    private long buy_by;
+    private UUID user_id;
+    private UUID category_id;
+    private UUID buy_by;
     private String type;
     private String title;
     private String summary;
@@ -31,19 +31,19 @@ public class Order extends SugarRecord<Order> {
         try{
             long longId = convertToLong(category_id);
             if (Category.findById(Category.class, longId) != null){
-                this.category_id = longId;
+                this.category_id = category_id;
             }
         }catch (android.database.sqlite.SQLiteException e){
-            this.category_id = convertToLong(UUID.randomUUID());
+            this.category_id = UUID.randomUUID();
         }
 
         try{
             long longId = convertToLong(user_id);
             if (User.findById(User.class, longId) != null){
-                this.user_id = longId;
+                this.user_id = user_id;
             }
         }catch (android.database.sqlite.SQLiteException e){
-            this.user_id = convertToLong(UUID.randomUUID());
+            this.user_id = UUID.randomUUID();
         }
 
         this.title = title;
@@ -80,11 +80,11 @@ public class Order extends SugarRecord<Order> {
         return type;
     }
 
-    public long getCategory_id() {
+    public UUID getCategory_id() {
         return category_id;
     }
 
-    public long getUser_id() {
+    public UUID getUser_id() {
         return user_id;
     }
 
@@ -96,7 +96,7 @@ public class Order extends SugarRecord<Order> {
         return created_at;
     }
 
-    public long getBuy_by() {
+    public UUID getBuy_by() {
         return buy_by;
     }
 
@@ -113,7 +113,7 @@ public class Order extends SugarRecord<Order> {
     }
 
     public void setCategory_id(UUID category_id) {
-        this.category_id = convertToLong(category_id);
+        this.category_id = category_id;
     }
 
     public void setImage(String image) {
@@ -129,7 +129,7 @@ public class Order extends SugarRecord<Order> {
     }
 
     public void setUser_id(UUID user_id) {
-        this.user_id = convertToLong(user_id);
+        this.user_id = user_id;
     }
 
     public void setType(String type) {
