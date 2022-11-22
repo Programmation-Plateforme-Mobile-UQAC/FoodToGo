@@ -21,21 +21,30 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodtogo.R;
-import com.example.foodtogo.data.model.Order;
+import com.example.foodtogo.data.model.Category;
+import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.data.model.User;
+import com.example.foodtogo.data.service.Authenticated;
+import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityAddOrderBinding;
+import com.example.foodtogo.databinding.ActivityLoginBinding;
 import com.example.foodtogo.databinding.ActivityMainBinding;
+import com.example.foodtogo.ui.authenticated.LoginFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
+import java.util.List;
 import java.util.UUID;
 
-public class AddFragment extends Fragment {
+public class AddFragment extends MyFragment {
     ActivityAddOrderBinding binding;
     ActivityMainBinding mainBinding;
+    ActivityLoginBinding loginBinding;
 
-    Order order = null;
+    Product order = null;
     boolean cameraIsGranted = false;
     boolean externalStorageIsGranted = false;
+    Authenticated service;
 
     //Intent result Handler
     private final ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -81,24 +90,26 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.service = new Authenticated();
         binding = ActivityAddOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.w("1","hello2222");
         super.onViewCreated(view, savedInstanceState);
 
         binding.addPostButton.setOnClickListener(view1 -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 try {
-                    order = new Order(UUID.randomUUID(), UUID.randomUUID(),
-                            binding.namePostEdit.getText().toString(),
-                            binding.foodTypeEdit.getText().toString()
+                    List<Category> categories = Category.listAll(Category.class);
+                    order = new Product(service.user_authenticated.getId(), categories.get(0).getId(),
+                            binding.namePostEdit.getText().toString()
                             ,binding.productDescriptionEdit.getText().toString(),
                             "", binding.expirationDateEdit.getText().toString());
                     order.save();
-                } catch (ParseException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

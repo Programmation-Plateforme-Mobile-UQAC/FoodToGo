@@ -1,4 +1,4 @@
-package com.example.foodtogo.ui.product;
+package com.example.foodtogo.ui.order;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,20 +11,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodtogo.R;
-import com.example.foodtogo.data.model.Order;
+import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.databinding.ActivityOrderDetailBinding;
 import com.example.foodtogo.ui.HomeFragment;
 
 public class OrderDetailFragment extends Fragment {
     ActivityOrderDetailBinding binding;
-    Order product;
+    Product product;
 
     public OrderDetailFragment(){
 
     }
 
-    public OrderDetailFragment(Order order){
+    public OrderDetailFragment(Product order){
         this.product = order;
     }
 
@@ -50,9 +50,9 @@ public class OrderDetailFragment extends Fragment {
         });
 
         binding.productDetailDescriptionText.setText(product.getSummary());
-        if (User.findById(User.class, Order.convertToLong(product.getUser_id())) != null)
-            binding.productdetailByText.setText(User.findById(User.class, Order.convertToLong(product.getUser_id())).firstName);
+        if (User.findById(User.class, product.user_id) != null)
+            binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
-        binding.productdetailPublishedText.setText(product.getCreated_at());
+        binding.productdetailPublishedText.setText(Long.toString(product.getCreated_at()));
     }
 }

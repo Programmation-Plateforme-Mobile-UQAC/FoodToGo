@@ -17,17 +17,10 @@
         android:theme="@style/Theme.FoodToGo"
         tools:replace="android:icon"
         tools:targetApi="31">
-        <activity
-            android:name=".ProductDetailActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
 
         <meta-data
             android:name="DATABASE"
-            android:value="test55.db" />
+            android:value="test234.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -39,15 +32,7 @@
             android:value="com.example" />
 
         <activity
-            android:name=".ui.authenticated.LoginActivity"
-            android:exported="true"
-            android:label="@string/app_name">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.product.AddOrderActivity"
+            android:name=".ui.order.AddOrderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

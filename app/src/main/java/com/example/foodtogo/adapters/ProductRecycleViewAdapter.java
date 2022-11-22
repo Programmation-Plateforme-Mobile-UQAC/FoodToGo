@@ -16,17 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.R;
-import com.example.foodtogo.data.model.Order;
-import com.example.foodtogo.ui.product.OrderDetailFragment;
+import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.ui.order.OrderDetailFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ProductHolder> {
     Context context;
-    ArrayList<Order> products;
+    ArrayList<Product> products;
 
-    public ProductRecycleViewAdapter(Context context, ArrayList<Order> products){
+    public ProductRecycleViewAdapter(Context context, ArrayList<Product> products){
         this.context = context;
         this.products = products;
     }
@@ -38,7 +38,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
         final ProductHolder holder = new ProductHolder(view);
 
         holder.itemView.setOnClickListener(l -> {
-            Order product = products.get(holder.getAdapterPosition() + 1);
+            Product product = products.get(holder.getAdapterPosition() + 1);
 
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new OrderDetailFragment(product)).commit();
@@ -48,7 +48,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
-        Order product = products.get(position);
+        Product product = products.get(position);
         holder.setDetails(product);
     }
 
@@ -69,7 +69,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             orderButton = itemView.findViewById(R.id.productReserverButton);
         }
 
-        public void setDetails(Order product){
+        public void setDetails(Product product){
             productName.setText(product.getTitle());
             if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
                 productImage.setImageBitmap(decode64BitImage(product.getImage()));

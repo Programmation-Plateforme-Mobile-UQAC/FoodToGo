@@ -2,16 +2,20 @@ package com.example.foodtogo.data.model;
 
 import com.orm.SugarRecord;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.UUID;
 
-public class Category extends SugarRecord<Category> {
-    private UUID id;
-    private String username;
+public class Category extends SugarRecord {
+    public UUID id;
+    private String name;
     private String summary;
 
-    public Category(UUID id, String username, String summary){
-        this.id = id;
-        this.username = username;
+    public Category(){}
+
+    public Category(String username, String summary){
+        this.id = UUID.randomUUID();
+        this.name = username;
         this.summary = summary;
     }
 
@@ -19,20 +23,26 @@ public class Category extends SugarRecord<Category> {
         return summary;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static Long convertToLong(UUID id){
+        Long val = -1L;
+        final ByteBuffer buffer = ByteBuffer.wrap(new byte[16]);
+        buffer.putLong(id.getLeastSignificantBits());
+        buffer.putLong(id.getMostSignificantBits());
+        final BigInteger bi = new BigInteger(buffer.array());
+        val = bi.longValue() & Long.MAX_VALUE;
+        return val;
     }
 
 }
