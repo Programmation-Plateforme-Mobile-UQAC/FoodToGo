@@ -96,7 +96,7 @@ public class AddFragment extends Fragment {
                             binding.namePostEdit.getText().toString(),
                             binding.foodTypeEdit.getText().toString()
                             ,binding.productDescriptionEdit.getText().toString(),
-                            null, binding.expirationDateEdit.getText().toString());
+                            "", binding.expirationDateEdit.getText().toString());
                     order.save();
                 } catch (ParseException e) {
                     e.printStackTrace();

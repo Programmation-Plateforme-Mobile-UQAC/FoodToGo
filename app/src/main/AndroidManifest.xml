@@ -27,7 +27,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="test2.db" />
+            android:value="test55.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -39,7 +39,7 @@
             android:value="com.example" />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.authenticated.LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <meta-data
@@ -47,7 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.order.AddProductActivity"
+            android:name=".ui.product.AddOrderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

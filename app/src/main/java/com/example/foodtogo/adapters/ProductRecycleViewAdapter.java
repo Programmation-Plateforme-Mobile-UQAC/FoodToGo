@@ -20,6 +20,7 @@ import com.example.foodtogo.data.model.Order;
 import com.example.foodtogo.ui.product.OrderDetailFragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ProductHolder> {
     Context context;
@@ -70,7 +71,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
         public void setDetails(Order product){
             productName.setText(product.getTitle());
-            if (product.getImage() != null)
+            if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
                 productImage.setImageBitmap(decode64BitImage(product.getImage()));
         }
 

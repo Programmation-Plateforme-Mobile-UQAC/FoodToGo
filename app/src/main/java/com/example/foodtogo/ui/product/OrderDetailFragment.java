@@ -50,9 +50,9 @@ public class OrderDetailFragment extends Fragment {
         });
 
         binding.productDetailDescriptionText.setText(product.getSummary());
-        if (User.findById(User.class, Order.convertToLong(product.getUser_id())) != null)
-            binding.productdetailByText.setText(User.findById(User.class, Order.convertToLong(product.getUser_id())).firstName);
+        if (User.findById(User.class, product.getUser_id()) != null)
+            binding.productdetailByText.setText(User.findById(User.class, product.getUser_id()).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
-        binding.productdetailPublishedText.setText(Order.convertDateToString(product.getCreated_at()));
+        binding.productdetailPublishedText.setText(product.getCreated_at());
     }
 }

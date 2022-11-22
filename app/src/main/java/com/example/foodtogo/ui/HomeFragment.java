@@ -1,9 +1,11 @@
 package com.example.foodtogo.ui;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +18,10 @@ import com.example.foodtogo.data.model.Order;
 import com.example.foodtogo.databinding.FragmentHomeBinding;
 import com.example.foodtogo.databinding.FragmentOrderCardEmptyBinding;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class HomeFragment extends Fragment {
     ArrayList<Order> productList;
@@ -33,14 +38,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         try {
             productList = new ArrayList<>(Order.listAll(Order.class));
-        }catch (java.lang.RuntimeException exception){
+        }catch (Exception exception){
             productList = new ArrayList<>();
         }
 
-        if (productList.isEmpty()){
+        /*if (productList.isEmpty()){
             cardEmptyBinding = FragmentOrderCardEmptyBinding.inflate(inflater, container, false);
             return cardEmptyBinding.getRoot();
-        }
+        }*/
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -56,6 +61,7 @@ public class HomeFragment extends Fragment {
             recyclerView.setAdapter(productRecycleViewAdapter);
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
             recyclerView.setHasFixedSize(true);
-        }
+        } else
+            binding.orderViewStub.inflate();
     }
 }

@@ -6,21 +6,20 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
 public class Order extends SugarRecord<Order> {
-    private UUID user_id;
-    private UUID category_id;
-    private UUID buy_by;
+    private long user_id;
+    private long category_id;
+    private long buy_by;
     private String type;
     private String title;
     private String summary;
     private String image;
-    private Date expirationDate;
-    private Date created_at;
+    private String expirationDate;
+    private String created_at;
     private boolean status;
     private boolean cancel_by_order;
 
@@ -32,27 +31,27 @@ public class Order extends SugarRecord<Order> {
         try{
             long longId = convertToLong(category_id);
             if (Category.findById(Category.class, longId) != null){
-                this.category_id = category_id;
+                this.category_id = longId;
             }
         }catch (android.database.sqlite.SQLiteException e){
-            this.category_id = UUID.randomUUID();
+            this.category_id = convertToLong(UUID.randomUUID());
         }
 
         try{
             long longId = convertToLong(user_id);
             if (User.findById(User.class, longId) != null){
-                this.user_id = user_id;
+                this.user_id = longId;
             }
         }catch (android.database.sqlite.SQLiteException e){
-            this.user_id = UUID.randomUUID();
+            this.user_id = convertToLong(UUID.randomUUID());
         }
 
         this.title = title;
         this.type = type;
         this.summary = summary;
         this.image = image == null ? "" : image;
-        this.expirationDate = convertStringToDate(expirationDate);
-        this.created_at = new Date(System.currentTimeMillis());
+        this.expirationDate = expirationDate;
+        this.created_at = new Date(System.currentTimeMillis()).toString();
     }
 
     public static Long convertToLong(UUID id){
@@ -81,23 +80,23 @@ public class Order extends SugarRecord<Order> {
         return type;
     }
 
-    public UUID getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public UUID getUser_id() {
+    public long getUser_id() {
         return user_id;
     }
 
     public String getExpirationDate() {
-        return convertDateToString(expirationDate);
+        return expirationDate;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public UUID getBuy_by() {
+    public long getBuy_by() {
         return buy_by;
     }
 
@@ -109,12 +108,12 @@ public class Order extends SugarRecord<Order> {
         return status;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
     public void setCategory_id(UUID category_id) {
-        this.category_id = category_id;
+        this.category_id = convertToLong(category_id);
     }
 
     public void setImage(String image) {
@@ -130,7 +129,7 @@ public class Order extends SugarRecord<Order> {
     }
 
     public void setUser_id(UUID user_id) {
-        this.user_id = user_id;
+        this.user_id = convertToLong(user_id);
     }
 
     public void setType(String type) {

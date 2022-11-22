@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/expirationDateHint"
         android:inputType="textPersonName"
@@ -106,13 +106,16 @@
         android:id="@+id/expirationDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="28dp"
         android:text="@string/expirationDateView"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/addPostButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/productDescriptionEdit"
@@ -121,10 +124,12 @@
         android:layout_marginStart="59dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/productDescriptionViewHint"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/expirationDateEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionView" />
