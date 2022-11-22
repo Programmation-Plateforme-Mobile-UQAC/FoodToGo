@@ -45,8 +45,6 @@ public class AddFragment extends MyFragment {
     Product order = null;
     boolean cameraIsGranted = false;
     boolean externalStorageIsGranted = false;
-    Authenticated service;
-
     //Intent result Handler
     private final ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -91,26 +89,25 @@ public class AddFragment extends MyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.service = new Authenticated();
         binding = ActivityAddOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.w("1","hello2222");
         super.onViewCreated(view, savedInstanceState);
 
         binding.addPostButton.setOnClickListener(view1 -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 try {
                     List<Category> categories = Category.listAll(Category.class);
-                    order = new Product(service.user_authenticated.getId(), categories.get(0).getId(),
+                    order = new Product(getService().user_authenticated.getId(), categories.get(0).getId(),
                             binding.namePostEdit.getText().toString()
                             ,binding.productDescriptionEdit.getText().toString(),
                             "", binding.expirationDateEdit.getText().toString());
                     order.save();
                     Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "Echec de l'ajout du produit", Toast.LENGTH_SHORT).show();

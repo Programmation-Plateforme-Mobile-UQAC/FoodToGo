@@ -43,7 +43,6 @@ public class LoginFragment extends MyFragment {
         super.onViewCreated(view, savedInstanceState);
         fragNextStepHome = new HomeFragment();
         fragNextStepRegister = new RegisterFragment();
-        Authenticated auth = getService();
 
         if(getService().user_authenticated != null){
             fragNextStepHome.setService(getService());
