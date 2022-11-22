@@ -1,95 +1,173 @@
 package com.example.foodtogo.data.model;
 
-import org.jetbrains.annotations.NotNull;
+import com.orm.SugarRecord;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
-public class Product {
-    private UUID id;
-    private UUID user_id;
-    private UUID category_id;
-    private String title;
-    private String summary;
-    private String image;
-    private Date created_at;
-    private Date updated_at;
+public class Product extends SugarRecord {
 
-    public Product(@NotNull UUID id, @NotNull UUID user_id, @NotNull UUID category_id,
-                   @NotNull String title, @NotNull String summary, @NotNull String image,
-                   @NotNull Date created_at, @NotNull Date updated_at) {
-        this.category_id = category_id;
-        this.id = id;
-        this.user_id = user_id;
+    public long user_id;
+    public long category_id;
+    private long buy_by;
+    public String title;
+    public String summary;
+    public String image;
+    private String expirationDate;
+    private long created_at;
+    private long updated_at;
+    private String status;
+    private boolean cancel_by_order;
+
+    public Product(){}
+
+    public Product(long user_id, long category_id,
+                 String title, String summary, String image,
+                 String expirationDate) throws Exception {
+
+        try{
+            if (Category.findById(Category.class, category_id) != null){
+                this.category_id = category_id;
+            }
+        }catch (android.database.sqlite.SQLiteException e){
+           throw new Exception("Category no exist");
+        }
+        try{
+            if (User.findById(User.class, user_id) != null){
+                this.user_id = user_id;
+            }
+        }catch (android.database.sqlite.SQLiteException e){
+            throw new Exception("User no exist");
+        }
+
         this.title = title;
         this.summary = summary;
-        this.image = image;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.image = image == null ? "" : image;
+        this.expirationDate = expirationDate;
+        this.created_at = System.currentTimeMillis();
+        this.updated_at = System.currentTimeMillis();
+        this.cancel_by_order = false;
+        this.status = "Created";
+    }
+
+    public static Long convertToLong(UUID id){
+        Long val = -1L;
+        final ByteBuffer buffer = ByteBuffer.wrap(new byte[16]);
+        buffer.putLong(id.getLeastSignificantBits());
+        buffer.putLong(id.getMostSignificantBits());
+        final BigInteger bi = new BigInteger(buffer.array());
+        val = bi.longValue() & Long.MAX_VALUE;
+        return val;
     }
 
 
-    public Date getCreated_at() {
-        return created_at;
+    public static String convertDateToString(Date date){
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("ca", "CA"));
+        return dateFormat.format(date);
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public static Date convertStringToDate(String date) throws ParseException {
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("ca", "CA"));
+        return dateFormat.parse(date);
     }
 
-    public String getImage() {
-        return image;
+    /// setter & getter
+
+
+    public long getUser_id() {
+        return user_id;
     }
 
-    public String getSummary() {
-        return summary;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
+    }
+
+    public long getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(long category_id) {
+        this.category_id = category_id;
+    }
+
+    public long getBuy_by() {
+        return buy_by;
+    }
+
+    public void setBuy_by(long buy_by) {
+        this.buy_by = buy_by;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public UUID getCategory_id() {
-        return category_id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public UUID getUser_id() {
-        return user_id;
-    }
-
-    public void setCategory_id(UUID category_id) {
-        this.category_id = category_id;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public String getSummary() {
+        return summary;
     }
 
     public void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getImage() {
+        return image;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public long getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(long created_at) {
+        this.created_at = created_at;
+    }
+
+    public long getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(long updated_at) {
         this.updated_at = updated_at;
     }
 
-    public void setUser_id(UUID user_id) {
-        this.user_id = user_id;
+    public String isStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isCancel_by_order() {
+        return cancel_by_order;
+    }
+
+    public void setCancel_by_order(boolean cancel_by_order) {
+        this.cancel_by_order = cancel_by_order;
     }
 }

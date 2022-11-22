@@ -6,8 +6,6 @@ import com.orm.SugarRecord;
 import java.util.UUID;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
-
-
 public class User extends SugarRecord {
 
     public UUID id;

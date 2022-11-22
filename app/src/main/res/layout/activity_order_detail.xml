@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/product_details_background"
-    tools:context=".ui.product.ProductDetailActivity">
+    android:background="#4add6a"
+    tools:context=".ui.order.ProductDetailActivity">
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/productImageSlider"
@@ -25,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="347dp"
-        android:background="#527048"
+        android:background="#4add6a"
         android:contentDescription="@string/productDetailBackButton"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
