@@ -1,4 +1,4 @@
-package com.example.foodtogo.ui.product;
+package com.example.foodtogo.ui.order;
 
 import android.os.Bundle;
 

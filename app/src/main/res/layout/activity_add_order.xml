@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundv3"
-    tools:context=".ui.order.AddProductActivity">
+    tools:context=".ui.order.AddOrderActivity">
 
     <EditText
         android:id="@+id/expirationDateEdit"
@@ -161,7 +161,8 @@
         app:layout_constraintBottom_toTopOf="@+id/namePostEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:text="Fruits"/>
 
     <Button
         android:id="@+id/addPostButton"

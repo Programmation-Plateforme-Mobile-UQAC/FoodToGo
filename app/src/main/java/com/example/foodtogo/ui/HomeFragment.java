@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.adapters.ProductRecycleViewAdapter;
-import com.example.foodtogo.data.model.Order;
+import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.data.model.User;
+import com.example.foodtogo.data.service.Authenticated;
+import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.FragmentHomeBinding;
 import com.example.foodtogo.databinding.FragmentOrderCardEmptyBinding;
 
@@ -23,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class HomeFragment extends Fragment {
-    ArrayList<Order> productList;
+public class HomeFragment extends MyFragment {
+    ArrayList<Product> productList;
     FragmentHomeBinding binding;
     FragmentOrderCardEmptyBinding cardEmptyBinding;
 
@@ -36,16 +39,23 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if(this.getService() == null){
+            this.setService(new Authenticated());
+        }
+        Authenticated auth = getService();
+        User user = getService().user_authenticated;
+
         try {
-            productList = new ArrayList<>(Order.listAll(Order.class));
+            productList = new ArrayList<>(Product.listAll(Product.class));
         }catch (Exception exception){
             productList = new ArrayList<>();
         }
 
-        /*if (productList.isEmpty()){
+        if (productList.isEmpty()){
             cardEmptyBinding = FragmentOrderCardEmptyBinding.inflate(inflater, container, false);
             return cardEmptyBinding.getRoot();
-        }*/
+        }
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -64,4 +74,5 @@ public class HomeFragment extends Fragment {
         } else
             binding.orderViewStub.inflate();
     }
+
 }
