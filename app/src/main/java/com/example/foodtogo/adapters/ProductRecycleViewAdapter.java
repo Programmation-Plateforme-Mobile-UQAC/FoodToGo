@@ -12,12 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.R;
 import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.ui.order.OrderDetailFragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ProductHolder> {
     Context context;
@@ -31,7 +34,15 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_product_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_order_card,parent,false);
+        final ProductHolder holder = new ProductHolder(view);
+
+        holder.itemView.setOnClickListener(l -> {
+            Product product = products.get(holder.getAdapterPosition() + 1);
+
+            AppCompatActivity activity = (AppCompatActivity) l.getContext();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
+        });
         return new ProductHolder(view);
     }
 
@@ -60,7 +71,8 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
         public void setDetails(Product product){
             productName.setText(product.getTitle());
-            productImage.setImageBitmap(decode64BitImage(product.getImage()));
+            if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
+                productImage.setImageBitmap(decode64BitImage(product.getImage()));
         }
 
         private Bitmap decode64BitImage(String encodedString){
