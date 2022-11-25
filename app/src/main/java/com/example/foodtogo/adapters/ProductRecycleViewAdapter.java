@@ -46,6 +46,11 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
         return new ProductHolder(view);
     }
 
+    public void setItems( ArrayList<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         Product product = products.get(position);
