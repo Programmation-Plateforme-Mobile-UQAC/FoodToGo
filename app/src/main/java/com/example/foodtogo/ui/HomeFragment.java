@@ -52,10 +52,10 @@ public class HomeFragment extends MyFragment {
             productList = new ArrayList<>();
         }
 
-        if (productList.isEmpty()){
+        /*if (productList.isEmpty()){
             cardEmptyBinding = FragmentOrderCardEmptyBinding.inflate(inflater, container, false);
             return cardEmptyBinding.getRoot();
-        }
+        }*/
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();

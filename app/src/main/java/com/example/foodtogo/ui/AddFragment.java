@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -33,8 +36,11 @@ import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class AddFragment extends MyFragment {
@@ -52,12 +58,29 @@ public class AddFragment extends MyFragment {
                     assert result.getData() != null;
 
                     int requestCode = result.getData().getExtras().getInt("REQUEST_CODE");
+                    Uri imageUri = result.getData().getData();
+                    Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+
+                    if (photo == null){
+                        try {
+                            if(Build.VERSION.SDK_INT < 28) {
+                                photo = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), imageUri);
+                            } else {
+                                ImageDecoder.Source source = ImageDecoder.createSource(requireContext().getContentResolver(), imageUri);
+                                photo = ImageDecoder.decodeBitmap(source);
+                            }
+                            binding.imageButton1.setImageBitmap(photo);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                     Log.w("ACTIVITY_LAUNCHER", result.getData().getAction());
-                    Log.w("ACTIVITY_LAUNCHER", String.valueOf(requestCode));
+                    Log.w("ACTIVITY_LAUNCHER", String.valueOf(photo == null));
                     //Log.w("ACTIVITY_LAUNCHER", result.getData().getExtras().getParcelable());
 
-                    binding.imageButton1.setImageURI(result.getData().getData());
+                    binding.imageButton1.setImageURI(imageUri);
+                    binding.imageButton1.setImageBitmap(photo);
                 }
     });
 
@@ -98,13 +121,14 @@ public class AddFragment extends MyFragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.addPostButton.setOnClickListener(view1 -> {
+            Bitmap photoBitmap = ((BitmapDrawable)binding.imageButton1.getDrawable()).getBitmap();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 try {
                     List<Category> categories = Category.listAll(Category.class);
                     order = new Product(getService().user_authenticated.getId(), categories.get(0).getId(),
                             binding.namePostEdit.getText().toString()
                             ,binding.productDescriptionEdit.getText().toString(),
-                            "", binding.expirationDateEdit.getText().toString());
+                            Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
                     order.save();
                     Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
 
