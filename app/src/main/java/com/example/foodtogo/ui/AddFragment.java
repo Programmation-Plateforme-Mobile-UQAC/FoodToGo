@@ -120,8 +120,14 @@ public class AddFragment extends MyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        categories =  Category.listAll(Category.class);
-        chosenCategory = categories.get(0);
+
+        try{
+            categories =  Category.listAll(Category.class);
+            chosenCategory = categories.get(0);
+        }catch (Exception e){
+            chosenCategory = null;
+        }
+
         binding = ActivityAddOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -147,6 +153,7 @@ public class AddFragment extends MyFragment {
                             ,binding.productDescriptionEdit.getText().toString(),
                             Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
                     order.save();
+                    getService().db.productDAO().insertOne(order);
                     Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
