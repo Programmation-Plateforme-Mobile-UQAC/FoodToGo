@@ -1,22 +1,30 @@
 package com.example.foodtogo.data.model;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.orm.SugarRecord;
 
 import java.util.UUID;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
+@Entity
 public class User extends SugarRecord {
+    public String tableName =  this.getSqlName();
 
+    @PrimaryKey
+    @NonNull
     public UUID id;
     public String firstName;
     public String lastName;
     public String email;
-    private String password;
+    public String password;
     public long birthday;
-    private Boolean verificated;
-    private long created_at;
-    private long updated_at;
+    public Boolean verificated;
+    public long created_at;
+    public long updated_at;
 
     public User(){}
 
@@ -51,5 +59,9 @@ public class User extends SugarRecord {
     public boolean onVerify(){
         if(this.email.isEmpty() == false && this.password.isEmpty() == false) return true;
         return false;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
