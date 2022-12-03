@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundv3"
+    android:background="@drawable/clean_background"
     tools:context=".ui.order.AddOrderActivity">
 
     <EditText
@@ -79,26 +79,23 @@
         android:id="@+id/foodTypeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
         android:text="@string/foodTypeView"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/foodTypeEdit"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton1" />
 
     <TextView
         android:id="@+id/namePostView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
         android:text="@string/namePostView"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/namePostEdit"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodTypeView" />
 
@@ -106,31 +103,27 @@
         android:id="@+id/expirationDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
         android:text="@string/expirationDateView"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/addPostButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit" />
 
     <EditText
         android:id="@+id/productDescriptionEdit"
-        android:layout_width="344dp"
-        android:layout_height="234dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="370dp"
+        android:layout_height="233dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/productDescriptionViewHint"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/expirationDateEdit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionView" />
 
@@ -138,13 +131,11 @@
         android:id="@+id/productDescriptionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="252dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
         android:text="@string/productDescriptionView"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namePostView" />
 
@@ -152,28 +143,27 @@
         android:id="@+id/foodTypeEdit"
         android:layout_width="224dp"
         android:layout_height="48dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="@string/foodTypeHint"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/namePostEdit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-        app:layout_constraintVertical_bias="0.0"
-        android:text="Fruits"/>
+        android:text="Fruits"
+        app:layout_constraintStart_toEndOf="@+id/foodTypeView"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
     <Button
         android:id="@+id/addPostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="97dp"
         android:layout_marginEnd="97dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#447CEC"
+        android:backgroundTint="@color/classic_green"
         android:text="@string/addPost"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

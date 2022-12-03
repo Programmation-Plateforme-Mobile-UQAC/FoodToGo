@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundv3"
+    android:background="@drawable/bottom_background"
     >
 
     <Button
@@ -80,7 +80,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Mot de passe
+"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
