@@ -43,14 +43,6 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_order_card,parent,false);
-        final ProductHolder holder = new ProductHolder(view);
-        
-        holder.itemView.setOnClickListener(l -> {
-            Product product = products.get(holder.getAdapterPosition() + 1);
-
-            AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
-        });
         return new ProductHolder(view);
     }
 
@@ -63,6 +55,11 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         Product product = products.get(position);
         holder.setDetails(product, userId);
+
+        holder.itemView.setOnClickListener(l -> {
+            AppCompatActivity activity = (AppCompatActivity) l.getContext();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
+        });
     }
 
     @Override
