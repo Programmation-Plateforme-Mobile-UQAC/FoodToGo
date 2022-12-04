@@ -2,8 +2,6 @@ package com.example.foodtogo.data.model;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
@@ -11,12 +9,9 @@ import com.orm.dsl.Table;
 import java.util.UUID;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
-@Entity
 public class User extends SugarRecord {
     public String tableName =  "User";
 
-    @PrimaryKey
-    @NonNull
     public UUID id;
     public String firstName;
     public String lastName;

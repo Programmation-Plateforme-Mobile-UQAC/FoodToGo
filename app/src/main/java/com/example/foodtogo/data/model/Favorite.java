@@ -1,8 +1,6 @@
 package com.example.foodtogo.data.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+
 
 import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
@@ -10,16 +8,12 @@ import com.orm.dsl.Table;
 
 import java.util.List;
 
-@Entity
 public class Favorite extends SugarRecord {
     public String tableName =  "Favorite";
 
-    @PrimaryKey
     public long id;
-    @ColumnInfo(name = "PRODUCTID")
     private long product_id;
 
-    @ColumnInfo(name = "USERID")
     private long user_id;
 
     public Favorite(){

@@ -1,8 +1,5 @@
 package com.example.foodtogo.data.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
@@ -16,31 +13,20 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-@Entity
 public class Product extends SugarRecord {
     public String tableName =  "Product";
 
-    @PrimaryKey
     public long productRoomId;
-    @ColumnInfo(name = "user_id")
     public long user_id;
-    @ColumnInfo(name = "category_id")
     public long category_id;
-    @ColumnInfo(name = "buy_by")
     private long buy_by;
-    @ColumnInfo(name = "title")
     public String title;
-    @ColumnInfo(name = "summary")
     public String summary;
-    @ColumnInfo(name = "image")
     public String image;
-    @ColumnInfo(name = "expirationDate")
     private String expirationDate;
     private long created_at;
     private long updated_at;
-    @ColumnInfo(name = "status")
     public String status;
-    @ColumnInfo(name = "cancel_by_order")
     public boolean cancel_by_order;
 
     public Product(){}

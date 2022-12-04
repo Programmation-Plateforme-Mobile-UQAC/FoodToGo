@@ -1,8 +1,6 @@
 package com.example.foodtogo.data.model;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
@@ -12,12 +10,9 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
-@Entity
 public class Category extends SugarRecord {
     public String tableName =  "Category";
 
-    @PrimaryKey
-    @NonNull
     public UUID id;
     private String name;
     private String summary;

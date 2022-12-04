@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                            "01/02/2023"
                    );
                    new_order.save();
-                   service.db.productDAO().insertOne(new_order);
 
                } catch (Exception e) {
                    Log.w("Error", e.getMessage());

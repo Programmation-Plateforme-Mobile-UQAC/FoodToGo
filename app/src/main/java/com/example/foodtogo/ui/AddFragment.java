@@ -153,7 +153,6 @@ public class AddFragment extends MyFragment {
                             ,binding.productDescriptionEdit.getText().toString(),
                             Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
                     order.save();
-                    getService().db.productDAO().insertOne(order);
                     Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
