@@ -9,7 +9,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class Authenticated {
 
-    public User user_authenticated;
+    public static User user_authenticated;
     public SugarOrmApp sugardb;
 
     public Authenticated(Context context){

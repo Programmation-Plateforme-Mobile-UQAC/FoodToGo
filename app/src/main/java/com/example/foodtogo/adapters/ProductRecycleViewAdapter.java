@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +28,25 @@ import com.example.foodtogo.ui.order.OrderDetailFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ProductHolder> {
     Context context;
     ArrayList<Product> products;
-    long userId;
+    Long userId;
 
     public ProductRecycleViewAdapter(Context context, ArrayList<Product> products, long userId){
         this.context = context;
         this.products = products;
-        this.userId = userId;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            this.userId = userId;
+        }
+    }
+
+    public ProductRecycleViewAdapter(Context context, ArrayList<Product> products){
+        this.context = context;
+        this.products = products;
+        this.userId = null;
     }
 
     @NonNull
@@ -58,7 +68,9 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
         holder.itemView.setOnClickListener(l -> {
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
+            OrderDetailFragment orderDetailFragment = new OrderDetailFragment(product);
+            //orderDetailFragment.setService(holder.ite);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, orderDetailFragment).commit();
         });
     }
 
@@ -81,19 +93,21 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             favoriteButton = itemView.findViewById(R.id.favoriteButton);
         }
 
-        public void setDetails(Product product, long userId){
+        public void setDetails(Product product, Long userId){
             productName.setText(product.getTitle());
 
             if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
                 productImage.setImageBitmap(decode64BitImage(product.getImage()));
 
-            Favorite productIsFavorite;
+            Favorite productIsFavorite = null;
 
             try {
-                productIsFavorite = Favorite.find(Favorite.class, "PRODUCTID = ?", product.getId().toString()).get(0);
-                favoriteButton.setBackgroundResource(R.drawable.isfavorite);
+                if (userId != null){
+                    productIsFavorite = Favorite.find(Favorite.class, "PRODUCTID = ?", product.getId().toString()).get(0);
+                    favoriteButton.setBackgroundResource(R.drawable.isfavorite);
+                }
             } catch (Exception e){
-                productIsFavorite = null;
+                e.printStackTrace();
             }
 
             Favorite finalProductIsFavorite = productIsFavorite;
@@ -102,11 +116,15 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
                     Toast.makeText(l.getContext(), "Existe deja dans la liste des favoris", Toast.LENGTH_SHORT).show();
                 } else {
                    try{
-                       Favorite favorite = new Favorite(product.getId(), userId);
-                       favorite.save();
+                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                           if(userId != null){
+                               Favorite favorite = new Favorite(product.getId(), userId);
+                               favorite.save();
 
-                       favoriteButton.setColorFilter(Color.RED);
-                       Toast.makeText(l.getContext(), "Ajouté à la liste des favoris", Toast.LENGTH_SHORT).show();
+                               favoriteButton.setColorFilter(Color.RED);
+                               Toast.makeText(l.getContext(), "Ajouté à la liste des favoris", Toast.LENGTH_SHORT).show();
+                           }
+                       }
                    } catch (Exception e){
                        Toast.makeText(l.getContext(), "Erreur d'ajout de favoris", Toast.LENGTH_SHORT).show();
                        e.printStackTrace();

@@ -15,13 +15,14 @@ import androidx.fragment.app.Fragment;
 import com.example.foodtogo.R;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
+import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityOrderDetailBinding;
 import com.example.foodtogo.ui.HomeFragment;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class OrderDetailFragment extends Fragment {
+public class OrderDetailFragment extends MyFragment {
     ActivityOrderDetailBinding binding;
     Product product;
 
@@ -51,7 +52,9 @@ public class OrderDetailFragment extends Fragment {
 
         binding.productDetailBackButton.setOnClickListener(l -> {
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new HomeFragment()).commit();
+            HomeFragment home = new HomeFragment();
+            home.setService(getService());
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, home).commit();
         });
 
         binding.productDetailDescriptionText.setText(product.getSummary());
