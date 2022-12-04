@@ -45,43 +45,44 @@
         android:id="@+id/image_categorie_"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
         android:foregroundGravity="left"
         android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_categorie2"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
+        app:layout_constraintEnd_toStartOf="@+id/image_categorie3"
+        app:layout_constraintStart_toEndOf="@+id/image_categorie"
         app:srcCompat="@android:drawable/button_onoff_indicator_off" />
 
     <ImageButton
         android:id="@+id/image_categorie"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
         android:foregroundGravity="left"
         android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categories"
         app:srcCompat="@android:drawable/button_onoff_indicator_off" />
 
-    <EditText
+    <TextView
         android:id="@+id/categories"
-        android:layout_width="154dp"
-        android:layout_height="46dp"
+        android:layout_width="130dp"
+        android:layout_height="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:clickable="false"
-        android:ems="10"
+        android:layout_marginTop="16dp"
         android:inputType="textPersonName"
         android:text="Catégories :"
-        android:textSize="12sp"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sort" />
 
@@ -100,31 +101,38 @@
         android:id="@+id/image_categorie3"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/placeholderText"
         android:foregroundGravity="left"
         android:scaleType="centerInside"
-        app:layout_constraintEnd_toStartOf="@+id/image_categorie_"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image_categorie"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/button_onoff_indicator_off" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecycleView"
-        android:layout_width="409dp"
-        android:layout_height="391dp"
+        android:layout_width="416dp"
+        android:layout_height="418dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="25dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_foodtogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="FoodToGo"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_categorie_"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
