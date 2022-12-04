@@ -1,6 +1,8 @@
 package com.example.foodtogo.ui.order;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,5 +59,8 @@ public class OrderDetailFragment extends Fragment {
             binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
         binding.productdetailPublishedText.setText(DateFormat.getDateInstance().format(new Date(product.getCreated_at())));
+
+        byte[] decodedString = Base64.decode(product.getImage(), Base64.DEFAULT);
+        binding.productImage.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
     }
 }
