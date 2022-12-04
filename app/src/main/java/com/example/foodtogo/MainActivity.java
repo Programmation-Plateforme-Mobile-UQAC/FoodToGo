@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodtogo.data.model.Category;
 import com.example.foodtogo.data.model.Favorite;
+import com.example.foodtogo.data.model.Message;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.data.service.Authenticated;
@@ -20,6 +21,7 @@ import com.example.foodtogo.ui.AddFragment;
 import com.example.foodtogo.ui.FavoriteFragment;
 import com.example.foodtogo.ui.HomeFragment;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
+import com.orm.SugarDb;
 
 import java.util.List;
 import java.util.Random;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         View v = mainBinding.getRoot();
         this.setContentView(v);
         this.service = new Authenticated(getApplicationContext());
+        SugarDb db = new SugarDb(this);
+        db.onCreate(db.getDB());
 
         mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
         HomeFragment firstFragmentStart = new HomeFragment();
@@ -115,8 +119,14 @@ public class MainActivity extends AppCompatActivity {
                ++i;
            }
 
-           Favorite favorite = new Favorite(Product.listAll(Product.class).get(0).getId());
+           Favorite.deleteAll(Favorite.class);
+           Favorite favorite = new Favorite(Product.listAll(Product.class).get(0).getId(),
+                   service.user_authenticated == null ? 1 : service.user_authenticated.getId());
            favorite.save();
+
+           Message.deleteAll(Message.class);
+           Message message = new Message("Hi");
+           message.save();
 
        } catch (Exception e){
            Toast.makeText(getApplicationContext(), "Error loading chunk", Toast.LENGTH_SHORT).show();

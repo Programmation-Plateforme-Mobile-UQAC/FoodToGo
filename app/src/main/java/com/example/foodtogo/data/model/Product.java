@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -15,8 +17,8 @@ import java.util.Locale;
 import java.util.UUID;
 
 @Entity
-public class Product extends SugarRecord<Product> {
-    public String tableName =  this.getSqlName();
+public class Product extends SugarRecord {
+    public String tableName =  "Product";
 
     @PrimaryKey
     public long productRoomId;

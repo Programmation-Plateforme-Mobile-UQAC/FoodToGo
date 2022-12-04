@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodtogo.R;
 import com.example.foodtogo.data.model.Favorite;
 import com.example.foodtogo.data.model.Product;
+import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.ui.order.OrderDetailFragment;
 
 import java.util.ArrayList;
@@ -30,10 +31,12 @@ import java.util.Objects;
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ProductHolder> {
     Context context;
     ArrayList<Product> products;
+    long userId;
 
-    public ProductRecycleViewAdapter(Context context, ArrayList<Product> products){
+    public ProductRecycleViewAdapter(Context context, ArrayList<Product> products, long userId){
         this.context = context;
         this.products = products;
+        this.userId = userId;
     }
 
     @NonNull
@@ -59,7 +62,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         Product product = products.get(position);
-        holder.setDetails(product);
+        holder.setDetails(product, userId);
     }
 
     @Override
@@ -81,7 +84,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             favoriteButton = itemView.findViewById(R.id.favoriteButton);
         }
 
-        public void setDetails(Product product){
+        public void setDetails(Product product, long userId){
             productName.setText(product.getTitle());
 
             if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
@@ -90,7 +93,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             Favorite productIsFavorite;
 
             try {
-                productIsFavorite = Favorite.find(Favorite.class, "product_id = ?", product.getId().toString()).get(0);
+                productIsFavorite = Favorite.find(Favorite.class, "PRODUCTID = ?", product.getId().toString()).get(0);
                 favoriteButton.setBackgroundResource(R.drawable.isfavorite);
             } catch (Exception e){
                 productIsFavorite = null;
@@ -102,7 +105,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
                     Toast.makeText(l.getContext(), "Existe deja dans la liste des favoris", Toast.LENGTH_SHORT).show();
                 } else {
                    try{
-                       Favorite favorite = new Favorite(product.getId());
+                       Favorite favorite = new Favorite(product.getId(), userId);
                        favorite.save();
 
                        favoriteButton.setColorFilter(Color.RED);

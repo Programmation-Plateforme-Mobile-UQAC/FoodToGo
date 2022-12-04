@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.example.foodtogo.data.database.AppDatabase;
+import com.example.foodtogo.data.database.SugarOrmApp;
 import com.example.foodtogo.data.model.User;
 import java.util.List;
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -13,12 +14,14 @@ public class Authenticated {
 
     public User user_authenticated;
     public AppDatabase db;
+    public SugarOrmApp sugardb;
 
     public Authenticated(Context context){
         db = Room.databaseBuilder(context, AppDatabase.class, "databaseFoodToGo.db")
                 .createFromAsset("test234.db")
                 .allowMainThreadQueries()
                 .build();
+        sugardb = new SugarOrmApp();
     }
 
     public Authenticated(){

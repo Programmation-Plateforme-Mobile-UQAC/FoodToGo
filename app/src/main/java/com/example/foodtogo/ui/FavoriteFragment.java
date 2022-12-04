@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class FavoriteFragment extends MyFragment {
     FragmentFavoriteBinding binding;
-    ArrayList<Product> favoriteProducts;
+    ArrayList<Product> favoriteProducts = new ArrayList<>();
     ProductRecycleViewAdapter productRecycleViewAdapter;
 
     @Override
@@ -36,12 +36,13 @@ public class FavoriteFragment extends MyFragment {
 
         try{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Favorite.findAll(Favorite.class).forEachRemaining(favorite -> {
+                Favorite.listAll(Favorite.class).forEach(favorite -> {
                     favoriteProducts.add(Product.findById(Product.class, favorite.getProduct_id()));
                 });
-            }
+            } else
+                favoriteProducts = new ArrayList<>();
 
-            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts);
+            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts, getService().user_authenticated.getId());
         }catch (Exception e){
             favoriteProducts = new ArrayList<>();
         }

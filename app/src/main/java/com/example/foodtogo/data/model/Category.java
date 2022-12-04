@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -12,7 +14,7 @@ import java.util.UUID;
 
 @Entity
 public class Category extends SugarRecord {
-    public String tableName =  this.getSqlName();
+    public String tableName =  "Category";
 
     @PrimaryKey
     @NonNull
