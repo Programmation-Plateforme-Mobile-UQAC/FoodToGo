@@ -10,18 +10,10 @@
     android:foregroundGravity="center"
     tools:context=".ui.HomeFragment">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemIconTint="#7CB342"
-        app:itemTextColor="#7CB342"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+
 
     <SearchView
+        android:id="@+id/searchView"
         android:layout_width="161dp"
         android:layout_height="48dp"
         android:layout_marginTop="60dp"
@@ -36,6 +28,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="60dp"
+        android:spinnerMode="dropdown"
         android:background="@android:drawable/btn_dropdown"
         android:contentDescription="trieur de contenu"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,18 +66,33 @@
         app:layout_constraintTop_toBottomOf="@+id/categories"
         app:srcCompat="@android:drawable/button_onoff_indicator_off" />
 
-    <TextView
-        android:id="@+id/categories"
-        android:layout_width="130dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:inputType="textPersonName"
-        android:text="Catégories :"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sort" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="156dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="2dp"
+        android:hint="Hello"
+        app:layout_constraintEnd_toStartOf="@+id/image_categorie3"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <EditText
+            android:id="@+id/categories"
+            android:layout_width="154dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:clickable="false"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Catégories :"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sort" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/filter"
@@ -133,6 +141,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ViewStub
+        android:id="@+id/orderViewStub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout="@layout/fragment_order_card_empty"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="634dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

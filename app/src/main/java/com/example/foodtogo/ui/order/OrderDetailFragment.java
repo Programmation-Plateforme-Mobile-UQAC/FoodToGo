@@ -1,6 +1,8 @@
 package com.example.foodtogo.ui.order;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +15,14 @@ import androidx.fragment.app.Fragment;
 import com.example.foodtogo.R;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
+import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityOrderDetailBinding;
 import com.example.foodtogo.ui.HomeFragment;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class OrderDetailFragment extends Fragment {
+public class OrderDetailFragment extends MyFragment {
     ActivityOrderDetailBinding binding;
     Product product;
 
@@ -49,7 +52,9 @@ public class OrderDetailFragment extends Fragment {
 
         binding.productDetailBackButton.setOnClickListener(l -> {
             AppCompatActivity activity = (AppCompatActivity) l.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new HomeFragment()).commit();
+            HomeFragment home = new HomeFragment();
+            home.setService(getService());
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, home).commit();
         });
 
         binding.productDetailDescriptionText.setText(product.getSummary());
@@ -57,5 +62,8 @@ public class OrderDetailFragment extends Fragment {
             binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
         binding.productdetailPublishedText.setText(DateFormat.getDateInstance().format(new Date(product.getCreated_at())));
+
+        byte[] decodedString = Base64.decode(product.getImage(), Base64.DEFAULT);
+        binding.productImage.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
     }
 }

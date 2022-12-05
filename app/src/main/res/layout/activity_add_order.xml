@@ -29,7 +29,6 @@
         android:hint="@string/expirationDateHint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/expirationDateView"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit" />
 
@@ -37,13 +36,13 @@
         android:id="@+id/namePostEdit"
         android:layout_width="224dp"
         android:layout_height="48dp"
-        android:layout_marginTop="11dp"
         android:layout_marginEnd="26dp"
+        android:layout_marginBottom="49dp"
         android:ems="10"
         android:hint="@string/namePostHint"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodTypeEdit" />
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionEdit"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -128,17 +127,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namePostView" />
 
-    <EditText
-        android:id="@+id/foodTypeEdit"
-        android:layout_width="224dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:ems="10"
-        android:hint="@string/foodTypeHint"
-        android:inputType="textPersonName"
-        android:text="Fruits"
-        app:layout_constraintStart_toEndOf="@+id/foodTypeView"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="242dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="23dp"
+        android:hint="Hello"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3">
+
+
+        <EditText
+            android:id="@+id/foodTypeEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/foodTypeHint"
+            android:inputType="textPersonName"
+            android:text="Fruits"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="194dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/addPostButton"
@@ -170,6 +182,7 @@
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

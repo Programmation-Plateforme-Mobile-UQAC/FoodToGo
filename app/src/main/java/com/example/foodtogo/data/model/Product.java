@@ -1,6 +1,9 @@
 package com.example.foodtogo.data.model;
 
+
+import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -11,7 +14,9 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class Product extends SugarRecord {
+    public String tableName =  "Product";
 
+    public long productRoomId;
     public long user_id;
     public long category_id;
     private long buy_by;
@@ -21,8 +26,8 @@ public class Product extends SugarRecord {
     private String expirationDate;
     private long created_at;
     private long updated_at;
-    private String status;
-    private boolean cancel_by_order;
+    public String status;
+    public boolean cancel_by_order;
 
     public Product(){}
 
@@ -30,6 +35,7 @@ public class Product extends SugarRecord {
                  String title, String summary, String image,
                  String expirationDate) throws Exception {
 
+        //productRoomId = this.id;
         try{
             if (Category.findById(Category.class, category_id) != null){
                 this.category_id = category_id;
