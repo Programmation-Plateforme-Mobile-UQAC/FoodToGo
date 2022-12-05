@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundv3"
+    android:background="@drawable/bottom_background"
     >
 
     <Button
@@ -80,7 +80,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Mot de passe
+"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +92,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="168dp"
-        android:backgroundTint="#9C9C9C"
+        android:backgroundTint="@color/classic_green"
         android:backgroundTintMode="add"
         android:text="Confirmation"
         app:layout_constraintBottom_toBottomOf="parent"
