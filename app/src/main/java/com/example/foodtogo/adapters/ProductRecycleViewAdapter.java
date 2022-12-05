@@ -3,19 +3,24 @@ package com.example.foodtogo.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.R;
+import com.example.foodtogo.data.model.Favorite;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.ui.order.OrderDetailFragment;
 
@@ -36,7 +41,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_order_card,parent,false);
         final ProductHolder holder = new ProductHolder(view);
-
+        
         holder.itemView.setOnClickListener(l -> {
             Product product = products.get(holder.getAdapterPosition() + 1);
 
@@ -44,6 +49,11 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, new OrderDetailFragment(product)).commit();
         });
         return new ProductHolder(view);
+    }
+
+    public void setItems( ArrayList<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -61,18 +71,48 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
         ImageView productImage;
         TextView productName;
         Button orderButton;
+        ImageButton favoriteButton;
 
         public ProductHolder(@NonNull View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.productImageView);
             productName = itemView.findViewById(R.id.productNameView);
             orderButton = itemView.findViewById(R.id.productReserverButton);
+            favoriteButton = itemView.findViewById(R.id.favoriteButton);
         }
 
         public void setDetails(Product product){
             productName.setText(product.getTitle());
+
             if (product.getImage() != null || !Objects.equals(product.getImage(), ""))
                 productImage.setImageBitmap(decode64BitImage(product.getImage()));
+
+            Favorite productIsFavorite;
+
+            try {
+                productIsFavorite = Favorite.find(Favorite.class, "product_id = ?", product.getId().toString()).get(0);
+                favoriteButton.setBackgroundResource(R.drawable.isfavorite);
+            } catch (Exception e){
+                productIsFavorite = null;
+            }
+
+            Favorite finalProductIsFavorite = productIsFavorite;
+            favoriteButton.setOnClickListener(l -> {
+                if (finalProductIsFavorite != null){
+                    Toast.makeText(l.getContext(), "Existe deja dans la liste des favoris", Toast.LENGTH_SHORT).show();
+                } else {
+                   try{
+                       Favorite favorite = new Favorite(product.getId());
+                       favorite.save();
+
+                       favoriteButton.setColorFilter(Color.RED);
+                       Toast.makeText(l.getContext(), "Ajouté à la liste des favoris", Toast.LENGTH_SHORT).show();
+                   } catch (Exception e){
+                       Toast.makeText(l.getContext(), "Erreur d'ajout de favoris", Toast.LENGTH_SHORT).show();
+                       e.printStackTrace();
+                   }
+                }
+            });
         }
 
         private Bitmap decode64BitImage(String encodedString){
