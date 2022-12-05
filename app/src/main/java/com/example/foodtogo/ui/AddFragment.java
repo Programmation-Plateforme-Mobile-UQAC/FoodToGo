@@ -11,12 +11,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -40,20 +38,15 @@ import com.example.foodtogo.ui.authenticated.LoginFragment;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class AddFragment extends MyFragment {
     ActivityAddOrderBinding binding;
     ActivityMainBinding mainBinding;
     ActivityLoginBinding loginBinding;
-    PopupMenu popupMenu;
-    List<Category> categories;
-    Category chosenCategory;
 
     Product order = null;
     boolean cameraIsGranted = false;
@@ -119,15 +112,6 @@ public class AddFragment extends MyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        try{
-            categories =  Category.listAll(Category.class);
-            chosenCategory = categories.get(0);
-        }catch (Exception e){
-            chosenCategory = null;
-        }
-
         binding = ActivityAddOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -135,25 +119,17 @@ public class AddFragment extends MyFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        manageFoodTypeDropDown();
 
         binding.addPostButton.setOnClickListener(view1 -> {
-            Bitmap photoBitmap;
-
-            try {
-                photoBitmap = ((BitmapDrawable)binding.imageButton1.getDrawable()).getBitmap();
-            } catch (Exception e){
-                photoBitmap = null;
-            }
-
+            Bitmap photoBitmap = ((BitmapDrawable)binding.imageButton1.getDrawable()).getBitmap();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 try {
-                    order = new Product(getService().user_authenticated.getId(), chosenCategory.getId(),
+                    List<Category> categories = Category.listAll(Category.class);
+                    order = new Product(getService().user_authenticated.getId(), categories.get(0).getId(),
                             binding.namePostEdit.getText().toString()
                             ,binding.productDescriptionEdit.getText().toString(),
                             Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
                     order.save();
-                    getService().db.productDAO().insertOne(order);
                     Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
@@ -186,32 +162,8 @@ public class AddFragment extends MyFragment {
     }
 
     private byte[] bitmapToByteArray(Bitmap bitmap){
-        if (bitmap != null){
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            return byteArrayOutputStream.toByteArray();
-        }
-        return new ByteArrayOutputStream().toByteArray();
-    }
-
-    private void manageFoodTypeDropDown(){
-        popupMenu = new PopupMenu(getContext(), binding.foodTypeEdit);
-        popupMenu.inflate(R.menu.category_list_menu);
-
-        popupMenu.setOnMenuItemClickListener(item ->{
-            binding.foodTypeEdit.setText(item.getTitle());
-            chosenCategory = Category.find(Category.class, "name = ?", binding.foodTypeEdit.getText().toString()).get(0);
-            return true;
-        });
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            categories.forEach(category -> popupMenu.getMenu().add(category.getName()));
-        }
-
-        binding.foodTypeEdit.setCursorVisible(false);
-        binding.foodTypeEdit.setFocusable(false);
-        binding.foodTypeEdit.setInputType(InputType.TYPE_NULL);
-
-        binding.foodTypeEdit.setOnClickListener(l -> popupMenu.show());
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }
