@@ -1,9 +1,5 @@
 package com.example.foodtogo.data.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import com.orm.SugarRecord;
 
 import java.math.BigInteger;
@@ -14,32 +10,19 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-@Entity
-public class Product extends SugarRecord<Product> {
-    public String tableName =  this.getSqlName();
+public class Product extends SugarRecord {
 
-    @PrimaryKey
-    public long productRoomId;
-    @ColumnInfo(name = "user_id")
     public long user_id;
-    @ColumnInfo(name = "category_id")
     public long category_id;
-    @ColumnInfo(name = "buy_by")
     private long buy_by;
-    @ColumnInfo(name = "title")
     public String title;
-    @ColumnInfo(name = "summary")
     public String summary;
-    @ColumnInfo(name = "image")
     public String image;
-    @ColumnInfo(name = "expirationDate")
     private String expirationDate;
     private long created_at;
     private long updated_at;
-    @ColumnInfo(name = "status")
-    public String status;
-    @ColumnInfo(name = "cancel_by_order")
-    public boolean cancel_by_order;
+    private String status;
+    private boolean cancel_by_order;
 
     public Product(){}
 
@@ -47,7 +30,6 @@ public class Product extends SugarRecord<Product> {
                  String title, String summary, String image,
                  String expirationDate) throws Exception {
 
-        //productRoomId = this.id;
         try{
             if (Category.findById(Category.class, category_id) != null){
                 this.category_id = category_id;
