@@ -141,7 +141,7 @@
         android:layout_width="268dp"
         android:layout_height="75dp"
         android:layout_marginBottom="148dp"
-        android:backgroundTint="#9C9C9C"
+        android:backgroundTint="@color/classic_green"
         android:backgroundTintMode="add"
         android:text="Confirmation"
         app:layout_constraintBottom_toBottomOf="parent"

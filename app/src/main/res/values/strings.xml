@@ -16,7 +16,7 @@
     <string name="placeholderText">Ajouter une image</string>
     <string name="reserver">reserver</string>
     <string name="expirationDateView">Date d\'expiration :</string>
-    <string name="namePostView">Nom de l\'annonce :</string>
+    <string name="namePostView">Titre :</string>
     <string name="productDescriptionView">Description du produit :</string>
     <string name="foodTypeView">Type d\'aliment :</string>
     <string name="addPost">Ajouter une annonce</string>

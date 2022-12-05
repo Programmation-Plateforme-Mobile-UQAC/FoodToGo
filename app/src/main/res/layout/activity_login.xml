@@ -92,7 +92,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="168dp"
-        android:backgroundTint="#9C9C9C"
+        android:backgroundTint="@color/classic_green"
         android:backgroundTintMode="add"
         android:text="Confirmation"
         app:layout_constraintBottom_toBottomOf="parent"
