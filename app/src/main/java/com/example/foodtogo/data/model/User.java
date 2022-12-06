@@ -4,14 +4,11 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 import java.util.UUID;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class User extends SugarRecord {
-    public String tableName =  "User";
-
     public UUID id;
     public String firstName;
     public String lastName;

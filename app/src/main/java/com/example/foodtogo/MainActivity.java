@@ -18,8 +18,10 @@ import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.AddFragment;
+import com.example.foodtogo.ui.ChatFragment;
 import com.example.foodtogo.ui.FavoriteFragment;
 import com.example.foodtogo.ui.HomeFragment;
+import com.example.foodtogo.ui.ProfilFragment;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
 import com.orm.SugarDb;
 
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         View v = mainBinding.getRoot();
         this.setContentView(v);
         this.service = new Authenticated(getApplicationContext());
-        SugarDb db = new SugarDb(this);
-        db.onCreate(db.getDB());
 
         mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
         HomeFragment firstFragmentStart = new HomeFragment();
@@ -77,56 +77,41 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            if (item.getItemId() == R.id.profile) {
+                if (this.service.user_authenticated == null) {
+                    LoginFragment frag = new LoginFragment();
+                    frag.setService(this.service);
+                    replaceFragment(frag);
+                } else {
+                    ProfilFragment frag = new ProfilFragment();
+                    frag.setService(this.service);
+                    replaceFragment(frag);
+                }
+            }
+
+            if (item.getItemId() == R.id.message) {
+                if (this.service.user_authenticated == null) {
+                    LoginFragment frag = new LoginFragment();
+                    frag.setService(this.service);
+                    replaceFragment(frag);
+                } else {
+                    ChatFragment frag = new ChatFragment();
+                    frag.setService(this.service);
+                    replaceFragment(frag);
+                }
+            }
+
             return true;
         });
     }
 
     public void chunk() {
        try {
-           List<User> users = User.listAll(User.class);
-           long uuid_user = users.get(0).getId();
-           Product.deleteAll(Product.class);
            Category.deleteAll(Category.class);
            Category new_cat = new Category("Fruits", "...");
            Category new_cat2 = new Category("Legume", "...");
            new_cat.save();
            new_cat2.save();
-           List<Category> categories = Category.listAll(Category.class);
-           Integer i = 0;
-           String[] random_orders = {
-                   "Orange",
-                   "Banane",
-                   "Peche",
-                   "Tomate",
-           };
-           while (i < 4) {
-               Category cat_selected = categories.get(0);
-               try {
-                   Product new_order = new Product(
-                           uuid_user, cat_selected.getId(),
-                           random_orders[new Random().nextInt(random_orders.length)],
-                           "Test description", "",
-                           "01/02/2023"
-                   );
-                   new_order.save();
-
-               } catch (Exception e) {
-                   Log.w("Error", e.getMessage());
-               }
-
-
-               ++i;
-           }
-
-           Favorite.deleteAll(Favorite.class);
-           Favorite favorite = new Favorite(Product.listAll(Product.class).get(0).getId(),
-                   service.user_authenticated == null ? 1 : service.user_authenticated.getId());
-           favorite.save();
-
-           Message.deleteAll(Message.class);
-           Message message = new Message("Hi");
-           message.save();
-
        } catch (Exception e){
            Toast.makeText(getApplicationContext(), "Error loading chunk", Toast.LENGTH_SHORT).show();
            e.printStackTrace();

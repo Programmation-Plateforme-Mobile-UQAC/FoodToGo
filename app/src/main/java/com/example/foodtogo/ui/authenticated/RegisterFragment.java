@@ -70,7 +70,7 @@ public class RegisterFragment extends MyFragment {
 
                 boolean checkIsExist = getService().isExist(email);
                 if(checkIsExist){
-                    Toast.makeText(getContext(),"User exist",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Veuillez vous connecter",Toast.LENGTH_SHORT).show();
                 }else{
                     boolean registered = getService().register(firstName,lastName,email,password);
                     if(registered){
