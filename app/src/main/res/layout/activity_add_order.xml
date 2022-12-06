@@ -139,14 +139,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
         android:layout_marginEnd="97dp"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/classic_green"
         android:text="@string/addPost"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintTop_toBottomOf="@+id/expirationDateEdit" />
 
     <TextView
         android:id="@+id/textView6"
