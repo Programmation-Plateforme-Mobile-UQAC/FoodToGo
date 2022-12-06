@@ -56,9 +56,9 @@ public class HomeFragment extends MyFragment {
         try {
             productList = new ArrayList<>(Product.listAll(Product.class));
             if (getService().user_authenticated != null)
-                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList, getService().user_authenticated.getId());
+                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList, getService().user_authenticated.getId(),getService());
             else
-                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList);
+                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList,getService());
 
         }catch (Exception exception){
             exception.printStackTrace();

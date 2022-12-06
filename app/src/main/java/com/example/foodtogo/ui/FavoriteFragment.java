@@ -37,13 +37,13 @@ public class FavoriteFragment extends MyFragment {
         try{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 String user_id = getService().user_authenticated.getId().toString();
-                Favorite.find(Favorite.class, "user_id = ?", user_id).forEach(favorite -> {
+                Favorite.find(Favorite.class, "userid = ?", user_id).forEach(favorite -> {
                     favoriteProducts.add(Product.findById(Product.class, favorite.getProduct_id()));
                 });
             } else
                 favoriteProducts = new ArrayList<>();
 
-            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts, getService().user_authenticated.getId());
+            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts, getService().user_authenticated.getId(),getService());
         }catch (Exception e){
             favoriteProducts = new ArrayList<>();
         }
