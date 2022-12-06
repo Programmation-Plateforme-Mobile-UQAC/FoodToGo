@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_margin="10dp"
+    android:layout_marginBottom="20dp"
+    android:paddingBottom="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_card"
+        >
+
+        <ImageButton
+            android:id="@+id/favoriteButton"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/favorite_button_message"
+            android:scaleType="centerCrop"
+            android:src="@drawable/favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/productImageView"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="211dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/productImageViewString"
+            android:src="@drawable/placeholderfragment_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favoriteButton"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/productNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/namePostView"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/productReserverButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productImageView" />
+
+        <Button
+            android:id="@+id/productReserverButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#D6D4D4"
+            android:text="@string/reserver"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productImageView"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/clean_background"
+    tools:context=".ui.order.AddOrderActivity">
+
+    <EditText
+        android:id="@+id/expirationDateEdit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/expirationDateHint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/expirationDateView"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <EditText
+        android:id="@+id/namePostEdit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="49dp"
+        android:ems="10"
+        android:hint="@string/namePostHint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toEndOf="@+id/namePostView"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="208dp"
+        android:layout_height="136dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="102dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/placeholderText"
+        android:foregroundGravity="center"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.054"
+        app:srcCompat="@drawable/placeholder_image" />
+
+    <TextView
+        android:id="@+id/foodTypeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/foodTypeView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <TextView
+        android:id="@+id/namePostView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/namePostView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodTypeView" />
+
+    <TextView
+        android:id="@+id/expirationDateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/expirationDateView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionEdit"
+        app:layout_constraintVertical_bias="0.054" />
+
+
+    <EditText
+        android:id="@+id/productDescriptionEdit"
+        android:layout_width="370dp"
+        android:layout_height="233dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/grey_font"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/productDescriptionViewHint"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/productDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/productDescriptionView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namePostView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/addPostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="97dp"
+        android:layout_marginEnd="97dp"
+        android:backgroundTint="@color/classic_green"
+        android:text="@string/addPost"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="140dp"
+        android:text="Créer une annonce"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <EditText
+        android:id="@+id/foodTypeEdit"
+        android:layout_width="190dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="@string/foodTypeHint"
+        android:inputType="textPersonName"
+        android:text="Fruits"
+        app:layout_constraintBottom_toTopOf="@+id/namePostEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodTypeView"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

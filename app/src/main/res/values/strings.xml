@@ -2,13 +2,46 @@
     <string name="app_name">FoodToGo</string>
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
+    <string name="prompt_first_name">Prénom</string>
+    <string name="prompt_lastName">Nom de famille</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Bonjour !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="placeholderText">Ajouter une image</string>
+    <string name="reserver">reserver</string>
+    <string name="expirationDateView">Date d\'expiration :</string>
+    <string name="namePostView">Titre :</string>
+    <string name="productDescriptionView">Description du produit :</string>
+    <string name="foodTypeView">Type d\'aliment :</string>
+    <string name="addPost">Ajouter une annonce</string>
+
+    <string name="productDescriptionViewHint">Ajouter une description du produit</string>
+    <string name="foodTypeHint">produit…</string>
+    <string name="expirationDateHint">01/01/1999</string>
+    <string name="namePostHint">annonce…</string>
+
+    <string name="productImageViewString">Product Image</string>
+    <string name="favorite_button_message">favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="productDetailBackButton">Back button</string>
+    <string name="productDetailPublishedByView">Publié le :</string>
+    <string name="productDetailExpiresOn">Périme le :</string>
+    <string name="productDetailBy">Par :</string>
+    <string name="productDetailDescriptionHint">Description produit</string>
+    <string name="productDetailPublishHint">Date de publication</string>
+    <string name="productDetailByHint">Utilisateur</string>
+    <string name="productDetailExpiresHint">Date d\'expiration</string>
+    <string name="productDetailReviewView">Review</string>
+    <string name="productDetailRatingBarView">Review</string>
+
+    <string name="productListEmptyMessage">Aucun produit n\'est disponible</string>
+
 </resources>
