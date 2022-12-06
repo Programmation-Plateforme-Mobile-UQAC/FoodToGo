@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,7 @@ import com.example.foodtogo.adapters.ProductRecycleViewAdapter;
 import com.example.foodtogo.data.model.Favorite;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
+import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.FragmentFavoriteBinding;
 import com.example.foodtogo.databinding.FragmentOrderCardEmptyBinding;
@@ -48,16 +50,30 @@ public class ProfilFragment extends MyFragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView name,email,number,adress;
+        Button disconnect;
 
         name = view.findViewById(R.id.name);
         email = view.findViewById(R.id.email);
         number = view.findViewById(R.id.number);
         adress = view.findViewById(R.id.adress);
+        disconnect = view.findViewById(R.id.disconnect);
 
         User user = getService().user_authenticated;
 
         name.setText(user.firstName +" " + user.lastName);
         email.setText(user.email);
+        number.setText("");
+        adress.setText("");
+
+        disconnect.setOnClickListener(l ->{
+            HomeFragment frag = new HomeFragment();
+            Authenticated service = getService();
+            service.user_authenticated = null;
+            frag.setService(service);
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, frag).commit();
+        });
+
 
     }
 }
