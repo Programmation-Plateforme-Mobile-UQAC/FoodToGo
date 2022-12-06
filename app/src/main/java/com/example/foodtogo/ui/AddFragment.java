@@ -36,6 +36,7 @@ import com.example.foodtogo.databinding.ActivityAddOrderBinding;
 import com.example.foodtogo.databinding.ActivityLoginBinding;
 import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
+import com.example.foodtogo.utils.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -161,7 +162,10 @@ public class AddFragment extends MyFragment {
                 }
             }
 
-            mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
+            if (mainBinding != null)
+                mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
+            else
+                Util.navigateTo(view, new HomeFragment());
         });
 
         binding.imageButton2.setOnClickListener(viewButton -> {
