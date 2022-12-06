@@ -24,17 +24,17 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_gchat"
+        android:id="@+id/messageRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
+        android:layout_height="575dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/text_gchat_indicator"
+        android:id="@+id/textView_foodtogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,16 +54,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageRecycleView">
 
 
         <EditText
-            android:layout_marginStart="16dp"
-            android:id="@+id/edit_gchat_message"
+
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/button_gchat_send"
+            android:layout_marginStart="16dp"
+            android:layout_toStartOf="@+id/button_send"
             android:background="@android:color/transparent"
             android:hint="Enter Message"
             android:inputType="text"
@@ -71,13 +73,13 @@
             tools:ignore="Autofill" />
 
         <ImageButton
-            android:id="@+id/button_gchat_send"
+            android:id="@+id/button_send"
             android:layout_width="64dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackground"
             android:textColor="@color/black"
-            app:srcCompat="@drawable/send"/>
+            app:srcCompat="@drawable/send" />
 
     </RelativeLayout>
 

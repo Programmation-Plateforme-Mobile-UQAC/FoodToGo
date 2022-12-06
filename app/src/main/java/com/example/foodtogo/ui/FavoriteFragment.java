@@ -36,7 +36,8 @@ public class FavoriteFragment extends MyFragment {
 
         try{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Favorite.listAll(Favorite.class).forEach(favorite -> {
+                String user_id = getService().user_authenticated.getId().toString();
+                Favorite.find(Favorite.class, "user_id = ?", user_id).forEach(favorite -> {
                     favoriteProducts.add(Product.findById(Product.class, favorite.getProduct_id()));
                 });
             } else

@@ -25,6 +25,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60dp"
@@ -34,17 +35,6 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:text="ID:362Hb458760"
-                    android:textColor="#5C5A5A"
-                    android:textSize="13sp"
-                    android:textStyle="normal" />
 
 
             </LinearLayout>

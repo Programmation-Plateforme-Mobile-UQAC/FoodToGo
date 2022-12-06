@@ -53,12 +53,6 @@ public class HomeFragment extends MyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if(this.getService() == null){
-            this.setService(new Authenticated());
-        }
-        Authenticated auth = getService();
-        User user = getService().user_authenticated;
-
         try {
             productList = new ArrayList<>(Product.listAll(Product.class));
             if (getService().user_authenticated != null)

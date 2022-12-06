@@ -2,19 +2,12 @@ package com.example.foodtogo.data.model;
 
 
 
-import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
-
-import java.util.List;
 
 public class Favorite extends SugarRecord {
-    public String tableName =  "Favorite";
-
     public long id;
-    private long product_id;
-
-    private long user_id;
+    public long product_id;
+    public long user_id;
 
     public Favorite(){
     }

@@ -20,7 +20,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="test234.db" />
+            android:value="test00000011.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />

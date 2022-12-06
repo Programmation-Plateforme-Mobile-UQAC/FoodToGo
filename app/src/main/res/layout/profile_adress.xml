@@ -46,22 +46,7 @@
                 android:gravity="center"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="5dp"
-                    android:src="@drawable/ic_add"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"/>
-                <TextView
-                    android:text="Add Information"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:textStyle="bold|normal"
-                    android:textColor="#286DC2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
 
 
         </RelativeLayout>
@@ -82,6 +67,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/adress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -89,16 +75,6 @@
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="G7H 4E5, \n1525 rue d'Alma,\n 3e apparetement"
-                    android:textAlignment="textStart"
-                    android:textColor="#ED5E5E5E"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    card_view:ignore="RtlCompat" />
 
 
             </LinearLayout>

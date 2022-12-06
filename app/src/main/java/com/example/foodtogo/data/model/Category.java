@@ -1,11 +1,6 @@
 package com.example.foodtogo.data.model;
 
-import androidx.annotation.NonNull;
-
-import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
-
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.UUID;

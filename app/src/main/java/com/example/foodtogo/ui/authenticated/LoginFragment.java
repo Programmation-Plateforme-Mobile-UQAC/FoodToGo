@@ -66,7 +66,7 @@ public class LoginFragment extends MyFragment {
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,fragNextStepHome).commit();
 
                 }catch (Exception e){
-                    Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Authentification échoue", Toast.LENGTH_SHORT).show();
                 }
             }
         });

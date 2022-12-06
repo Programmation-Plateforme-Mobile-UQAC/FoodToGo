@@ -76,7 +76,7 @@ public class AddFragment extends MyFragment {
                                 ImageDecoder.Source source = ImageDecoder.createSource(requireContext().getContentResolver(), imageUri);
                                 photo = ImageDecoder.decodeBitmap(source);
                             }
-                            binding.imageButton1.setImageBitmap(photo);
+                            binding.imageButton2.setImageBitmap(photo);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -86,8 +86,8 @@ public class AddFragment extends MyFragment {
                     Log.w("ACTIVITY_LAUNCHER", String.valueOf(photo == null));
                     //Log.w("ACTIVITY_LAUNCHER", result.getData().getExtras().getParcelable());
 
-                    binding.imageButton1.setImageURI(imageUri);
-                    binding.imageButton1.setImageBitmap(photo);
+                    binding.imageButton2.setImageURI(imageUri);
+                    binding.imageButton2.setImageBitmap(photo);
                 }
     });
 
@@ -141,7 +141,7 @@ public class AddFragment extends MyFragment {
             Bitmap photoBitmap;
 
             try {
-                photoBitmap = ((BitmapDrawable)binding.imageButton1.getDrawable()).getBitmap();
+                photoBitmap = ((BitmapDrawable)binding.imageButton2.getDrawable()).getBitmap();
             } catch (Exception e){
                 photoBitmap = null;
             }
@@ -164,7 +164,7 @@ public class AddFragment extends MyFragment {
             mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
         });
 
-        binding.imageButton1.setOnClickListener(viewButton -> {
+        binding.imageButton2.setOnClickListener(viewButton -> {
             requestPermission();
         });
     }

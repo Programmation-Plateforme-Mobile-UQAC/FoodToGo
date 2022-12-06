@@ -1,9 +1,7 @@
 package com.example.foodtogo.data.model;
 
 
-import com.example.foodtogo.data.database.SugarOrmApp;
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -14,8 +12,6 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class Product extends SugarRecord {
-    public String tableName =  "Product";
-
     public long productRoomId;
     public long user_id;
     public long category_id;

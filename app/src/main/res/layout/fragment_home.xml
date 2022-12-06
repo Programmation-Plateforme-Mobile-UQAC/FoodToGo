@@ -5,142 +5,49 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:layout_gravity="center"
     android:background="@drawable/clean_background"
     android:foregroundGravity="center"
     tools:context=".ui.HomeFragment">
 
 
-
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="161dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="242dp"
+        android:layout_height="42dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        app:layout_constraintEnd_toStartOf="@+id/filter"
-        app:layout_constraintStart_toEndOf="@+id/sort"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/sort"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:spinnerMode="dropdown"
-        android:background="@android:drawable/btn_dropdown"
-        android:contentDescription="trieur de contenu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_foodtogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/image_categorie_"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="20dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/placeholderText"
-        android:foregroundGravity="left"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
-        app:layout_constraintEnd_toStartOf="@+id/image_categorie3"
-        app:layout_constraintStart_toEndOf="@+id/image_categorie"
-        app:srcCompat="@android:drawable/button_onoff_indicator_off" />
-
-    <ImageButton
-        android:id="@+id/image_categorie"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/placeholderText"
-        android:foregroundGravity="left"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories"
-        app:srcCompat="@android:drawable/button_onoff_indicator_off" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="156dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="2dp"
-        android:hint="Hello"
-        app:layout_constraintEnd_toStartOf="@+id/image_categorie3"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
-
-        <EditText
-            android:id="@+id/categories"
-            android:layout_width="154dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:clickable="false"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Catégories :"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sort" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Spinner
-        android:id="@+id/filter"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="25dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:contentDescription="Filtre à contenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/image_categorie3"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/placeholderText"
-        android:foregroundGravity="left"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/productRecycleView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/button_onoff_indicator_off" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productRecycleView"
-        android:layout_width="416dp"
-        android:layout_height="418dp"
-        android:layout_marginStart="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145" />
 
     <TextView
         android:id="@+id/textView_foodtogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="FoodToGo"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="170dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ViewStub
         android:id="@+id/orderViewStub"
@@ -153,6 +60,22 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="634dp" />
+
+    <EditText
+        android:id="@+id/categories"
+        android:layout_width="154dp"
+        android:layout_height="46dp"
+        android:clickable="false"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Catégories :"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
