@@ -18,6 +18,7 @@ import com.example.foodtogo.data.model.User;
 import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityLoginBinding;
+import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.AddFragment;
 import com.example.foodtogo.ui.ChatFragment;
 import com.example.foodtogo.ui.FavoriteFragment;
@@ -27,6 +28,7 @@ import com.example.foodtogo.ui.ProfilFragment;
 public class LoginFragment extends MyFragment {
 
     ActivityLoginBinding binding;
+    ActivityMainBinding mainBinding;
     HomeFragment fragNextStepHome;
     RegisterFragment fragNextStepRegister;
     int redirectionPageId;
@@ -37,6 +39,11 @@ public class LoginFragment extends MyFragment {
 
     public LoginFragment(int redirectionPageId){
         this.redirectionPageId = redirectionPageId;
+    }
+
+    public LoginFragment(int redirectionPageId, ActivityMainBinding mainBinding){
+        this.redirectionPageId = redirectionPageId;
+        this.mainBinding = mainBinding;
     }
 
 
@@ -64,7 +71,7 @@ public class LoginFragment extends MyFragment {
                 navigateTo(view, fragNextStepHome);
             else{
                 if (this.redirectionPageId == R.id.add){
-                    AddFragment fragment = new AddFragment();
+                    AddFragment fragment = new AddFragment(mainBinding);
                     fragment.setService(getService());
                     navigateTo(view, fragment);
                 } else if (this.redirectionPageId == R.id.favorite){
@@ -100,7 +107,7 @@ public class LoginFragment extends MyFragment {
                         navigateTo(view, fragNextStepHome);
                     else{
                         if (redirectionPageId == R.id.add){
-                            AddFragment fragment = new AddFragment();
+                            AddFragment fragment = new AddFragment(mainBinding);
                             fragment.setService(getService());
                             navigateTo(view, fragment);
                         } else if (redirectionPageId == R.id.favorite){

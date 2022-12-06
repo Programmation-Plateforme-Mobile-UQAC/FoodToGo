@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.add) {
                 if (this.service.user_authenticated == null) {
-                    LoginFragment frag = new LoginFragment(R.id.add);
+                    LoginFragment frag = new LoginFragment(R.id.add, mainBinding);
                     frag.setService(this.service);
                     replaceFragment(frag);
                 } else {
@@ -107,11 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void chunk() {
        try {
-           Category.deleteAll(Category.class);
-           Category new_cat = new Category("Fruits", "...");
-           Category new_cat2 = new Category("Legume", "...");
-           new_cat.save();
-           new_cat2.save();
+           if(Category.listAll(Category.class).size() == 0){
+               Category.deleteAll(Category.class);
+               Category new_cat = new Category("Fruits", "...");
+               Category new_cat2 = new Category("Legume", "...");
+               new_cat.save();
+               new_cat2.save();
+           }
        } catch (Exception e){
            Toast.makeText(getApplicationContext(), "Error loading chunk", Toast.LENGTH_SHORT).show();
            e.printStackTrace();
