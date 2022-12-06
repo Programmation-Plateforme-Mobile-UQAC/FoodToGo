@@ -118,6 +118,12 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
             Favorite finalProductIsFavorite = productIsFavorite;
             favoriteButton.setOnClickListener(l -> {
+                if(service.user_authenticated == null){
+                    LoginFragment frag = new LoginFragment();
+                    frag.setService(service);
+                    AppCompatActivity activity = (AppCompatActivity) l.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, frag).commit();
+                }
                 if (finalProductIsFavorite != null){
                     Toast.makeText(l.getContext(), "Existe deja dans la liste des favoris", Toast.LENGTH_SHORT).show();
                 } else {
@@ -129,6 +135,8 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
                                favoriteButton.setColorFilter(Color.RED);
                                Toast.makeText(l.getContext(), "Ajouté à la liste des favoris", Toast.LENGTH_SHORT).show();
+                           }else{
+
                            }
                        }
                    } catch (Exception e){
