@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.add) {
                 if (this.service.user_authenticated == null) {
-                    LoginFragment frag = new LoginFragment();
+                    LoginFragment frag = new LoginFragment(R.id.add);
                     frag.setService(this.service);
                     replaceFragment(frag);
                 } else {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.favorite) {
                 if (this.service.user_authenticated == null) {
-                    LoginFragment frag = new LoginFragment();
+                    LoginFragment frag = new LoginFragment(R.id.favorite);
                     frag.setService(this.service);
                     replaceFragment(frag);
                 } else {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.profile) {
                 if (this.service.user_authenticated == null) {
-                    LoginFragment frag = new LoginFragment();
+                    LoginFragment frag = new LoginFragment( R.id.profile);
                     frag.setService(this.service);
                     replaceFragment(frag);
                 } else {
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.message) {
                 if (this.service.user_authenticated == null) {
-                    LoginFragment frag = new LoginFragment();
+                    LoginFragment frag = new LoginFragment(R.id.message);
                     frag.setService(this.service);
                     replaceFragment(frag);
                 } else {
