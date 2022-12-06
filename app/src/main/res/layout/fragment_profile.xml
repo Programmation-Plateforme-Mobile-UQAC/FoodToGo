@@ -13,29 +13,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:padding="8dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:padding="1dp"
-                    android:src="@drawable/ic_notification" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -87,6 +65,13 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey_font"
+        android:text="Deconnection" />
 
 
 </LinearLayout>

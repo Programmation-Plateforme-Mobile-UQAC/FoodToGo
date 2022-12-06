@@ -43,7 +43,7 @@ public class FavoriteFragment extends MyFragment {
             } else
                 favoriteProducts = new ArrayList<>();
 
-            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts, getService().user_authenticated.getId());
+            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), favoriteProducts, getService().user_authenticated.getId(),getService());
         }catch (Exception e){
             favoriteProducts = new ArrayList<>();
         }
