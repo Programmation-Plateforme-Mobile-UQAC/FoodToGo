@@ -16,6 +16,7 @@ import com.example.foodtogo.data.service.Authenticated;
 import com.example.foodtogo.data.viewmodel.MyFragment;
 import com.example.foodtogo.databinding.ActivityLoginBinding;
 import com.example.foodtogo.databinding.ActivityRegisterBinding;
+import com.example.foodtogo.utils.Util;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,6 +25,15 @@ public class RegisterFragment extends MyFragment {
 
     ActivityRegisterBinding binding;
     LoginFragment fragNextStep;
+    int redirectionPageId;
+
+    public RegisterFragment(){
+        this.redirectionPageId = -1;
+    }
+
+    public RegisterFragment(int redirectionPageId){
+        this.redirectionPageId = redirectionPageId;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,7 @@ public class RegisterFragment extends MyFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.fragNextStep = new LoginFragment();
+        this.fragNextStep = new LoginFragment(redirectionPageId);
         binding.btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -51,7 +61,7 @@ public class RegisterFragment extends MyFragment {
         });
 
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            private Timer mTimer = new Timer();
+            /*private Timer mTimer = new Timer();
             public TimerTask mTask = new TimerTask() {
                 @Override
                 public void run() {
@@ -59,7 +69,7 @@ public class RegisterFragment extends MyFragment {
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, fragNextStep).commit();
                 }
-            };
+            };*/
 
             @Override
             public void onClick(View view) {
@@ -74,8 +84,10 @@ public class RegisterFragment extends MyFragment {
                 }else{
                     boolean registered = getService().register(firstName,lastName,email,password);
                     if(registered){
-                        Toast.makeText(getContext(),"Enregistrement est un succès vous allez être redirigé vers la page de connexion",Toast.LENGTH_SHORT).show();
-                        mTimer.scheduleAtFixedRate(mTask, 1000, 1000);
+                        fragNextStep.setService(getService());
+                        Util.navigateTo(view, fragNextStep);
+                        Toast.makeText(getContext(),"Inscription réussi !",Toast.LENGTH_SHORT).show();
+                        //mTimer.scheduleAtFixedRate(mTask, 1000, 1000);
 
                     }else{
                         Toast.makeText(getContext(), "Enregistrement à était un échec, veuillez ressayer ultérieurement", Toast.LENGTH_SHORT).show();

@@ -24,6 +24,7 @@ import com.example.foodtogo.ui.ChatFragment;
 import com.example.foodtogo.ui.FavoriteFragment;
 import com.example.foodtogo.ui.HomeFragment;
 import com.example.foodtogo.ui.ProfilFragment;
+import com.example.foodtogo.utils.Util;
 
 public class LoginFragment extends MyFragment {
 
@@ -63,30 +64,32 @@ public class LoginFragment extends MyFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fragNextStepHome = new HomeFragment();
-        fragNextStepRegister = new RegisterFragment();
+        fragNextStepRegister = new RegisterFragment(redirectionPageId);
 
         if(getService().user_authenticated != null){
             fragNextStepHome.setService(getService());
             if (redirectionPageId == -1)
-                navigateTo(view, fragNextStepHome);
+                Util.navigateTo(view, fragNextStepHome);
             else{
-                if (this.redirectionPageId == R.id.add){
+                MyFragment fragment = Util.createFragmentFromId(this.redirectionPageId, getService());
+                Util.navigateTo(view, fragment);
+                /*if (this.redirectionPageId == R.id.add){
                     AddFragment fragment = new AddFragment(mainBinding);
                     fragment.setService(getService());
-                    navigateTo(view, fragment);
+                    Util.navigateTo(view, fragment);
                 } else if (this.redirectionPageId == R.id.favorite){
                     FavoriteFragment fragment = new FavoriteFragment();
                     fragment.setService(getService());
-                    navigateTo(view, fragment);
+                    Util.navigateTo(view, fragment);
                 }else if (this.redirectionPageId == R.id.profile){
                     ProfilFragment fragment = new ProfilFragment();
                     fragment.setService(getService());
-                    navigateTo(view, fragment);
+                    Util.navigateTo(view, fragment);
                 } else if (this.redirectionPageId == R.id.message){
                     ChatFragment fragment = new ChatFragment();
                     fragment.setService(getService());
-                    navigateTo(view, fragment);
-                }
+                    Util.navigateTo(view, fragment);
+                }*/
             }
 
         }
@@ -104,25 +107,27 @@ public class LoginFragment extends MyFragment {
                     Toast.makeText(getContext(), welcome, Toast.LENGTH_LONG).show();
                     fragNextStepHome.setService(getService());
                     if (redirectionPageId == -1)
-                        navigateTo(view, fragNextStepHome);
+                        Util.navigateTo(view, fragNextStepHome);
                     else{
-                        if (redirectionPageId == R.id.add){
+                        MyFragment fragment = Util.createFragmentFromId(redirectionPageId, getService());
+                        Util.navigateTo(view, fragment);
+                        /*if (redirectionPageId == R.id.add){
                             AddFragment fragment = new AddFragment(mainBinding);
                             fragment.setService(getService());
-                            navigateTo(view, fragment);
+                            Util.navigateTo(view, fragment);
                         } else if (redirectionPageId == R.id.favorite){
                             FavoriteFragment fragment = new FavoriteFragment();
                             fragment.setService(getService());
-                            navigateTo(view, fragment);
+                            Util.navigateTo(view, fragment);
                         }else if (redirectionPageId == R.id.profile){
                             ProfilFragment fragment = new ProfilFragment();
                             fragment.setService(getService());
-                            navigateTo(view, fragment);
+                            Util.navigateTo(view, fragment);
                         } else if (redirectionPageId == R.id.message){
                             ChatFragment fragment = new ChatFragment();
                             fragment.setService(getService());
-                            navigateTo(view, fragment);
-                        }
+                            Util.navigateTo(view, fragment);
+                        }*/
                     }
 
                 }catch (Exception e){
@@ -140,10 +145,5 @@ public class LoginFragment extends MyFragment {
             }
         });
 
-    }
-
-    private void navigateTo(View view, MyFragment destination){
-        AppCompatActivity activity = (AppCompatActivity) view.getContext();
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, destination).commit();
     }
 }
