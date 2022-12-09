@@ -24,6 +24,7 @@ public class Product extends SugarRecord {
     private long updated_at;
     public String status;
     public boolean cancel_by_order;
+    public Float rating;
 
     public Product(){}
 
@@ -55,6 +56,7 @@ public class Product extends SugarRecord {
         this.updated_at = System.currentTimeMillis();
         this.cancel_by_order = false;
         this.status = "Created";
+        this.rating = 0f;
     }
 
     public static Long convertToLong(UUID id){
@@ -171,5 +173,13 @@ public class Product extends SugarRecord {
 
     public void setCancel_by_order(boolean cancel_by_order) {
         this.cancel_by_order = cancel_by_order;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public Float getRating() {
+        return rating;
     }
 }

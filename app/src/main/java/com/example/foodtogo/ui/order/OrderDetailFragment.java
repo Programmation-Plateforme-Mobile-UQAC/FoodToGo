@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.R;
+import com.example.foodtogo.adapters.ProductRecycleViewAdapter;
 import com.example.foodtogo.data.model.Chat;
 import com.example.foodtogo.data.model.Product;
 import com.example.foodtogo.data.model.User;
@@ -24,12 +27,18 @@ import com.example.foodtogo.ui.HomeFragment;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class OrderDetailFragment extends MyFragment {
     ActivityOrderDetailBinding binding;
     Product product;
+    ProductRecycleViewAdapter productRecycleViewAdapter;
+    ArrayList<Product> recommended;
 
     public OrderDetailFragment(){
 
@@ -47,6 +56,23 @@ public class OrderDetailFragment extends MyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        try {
+
+            recommended = new ArrayList<>(Product.listAll(Product.class));
+            Collections.shuffle(recommended);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                recommended = recommended.stream().limit(4)
+                        .filter(product1 -> !Objects.equals(product1.getId(), product.getId()) && product1.getCategory_id() == product.getCategory_id())
+                        .collect(Collectors.toCollection(ArrayList::new));
+            }
+
+            productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), recommended, getService());
+        } catch (Exception e){
+            e.printStackTrace();
+            recommended = new ArrayList<>();
+        }
+
         binding = ActivityOrderDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -72,6 +98,8 @@ public class OrderDetailFragment extends MyFragment {
             binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
         binding.productdetailExpiresOnText.setText(product.getExpirationDate());
         binding.productdetailPublishedText.setText(DateFormat.getDateInstance().format(new Date(product.getCreated_at())));
+        binding.ratingBar.setRating(product.getRating());
+        binding.ratingBar.setEnabled(false);
 
         byte[] decodedString = Base64.decode(product.getImage(), Base64.DEFAULT);
         binding.productImage.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
@@ -102,5 +130,12 @@ public class OrderDetailFragment extends MyFragment {
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, frag).commit();
             }
         });
+
+        if (!recommended.isEmpty()){
+            RecyclerView recyclerView = binding.recommandedProductRecycleView;
+            recyclerView.setAdapter(productRecycleViewAdapter);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            recyclerView.setHasFixedSize(true);
+        }
     }
 }

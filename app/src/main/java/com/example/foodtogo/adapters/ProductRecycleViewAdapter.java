@@ -51,7 +51,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
     public ProductRecycleViewAdapter(Context context, ArrayList<Product> products,Authenticated service){
         this.context = context;
         this.products = products;
-        this.userId = null;
+        this.userId = service.user_authenticated != null ? service.user_authenticated.getId() : null;
         this.service = service;
     }
 
