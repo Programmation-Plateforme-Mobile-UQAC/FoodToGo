@@ -110,11 +110,11 @@ public class OrderDetailFragment extends MyFragment {
             String send_to = Long.toString(product.getUser_id());
             List<Chat> chat_exist = Chat.find(Chat.class, "sendto = ? & sendby = ?", send_to,send_by);
             if(send_by.equals(send_to)){
-                Toast.makeText(getContext(), "Vous etre le donneur vous pouvez pas reserver votre propre annonce", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Vous êtes le donneur vous ne pouvez pas réserver votre propre annonce", Toast.LENGTH_SHORT).show();
 
             }
             else if(chat_exist.size() > 0){
-                Toast.makeText(getContext(), "Vous avez déja démarrer une conversation avec le donneur", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Vous avez déja une conversation avec le donneur", Toast.LENGTH_SHORT).show();
             }
             else{
                 Chat new_chat = new Chat(
@@ -123,7 +123,7 @@ public class OrderDetailFragment extends MyFragment {
                         product.getId()
                 );
                 new_chat.save();
-                Toast.makeText(getContext(), "Vous aller démarrer une conversation avec le donneur", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Vous allez démarrer une conversation avec le donneur", Toast.LENGTH_SHORT).show();
                 AppCompatActivity activity = (AppCompatActivity) l.getContext();
                 ChatFragment frag = new ChatFragment();
                 frag.setService(getService());
