@@ -62,8 +62,9 @@ public class OrderDetailFragment extends MyFragment {
             recommended = new ArrayList<>(Product.listAll(Product.class));
             Collections.shuffle(recommended);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                recommended = recommended.stream().limit(4)
+                recommended = recommended.stream()
                         .filter(product1 -> !Objects.equals(product1.getId(), product.getId()) && product1.getCategory_id() == product.getCategory_id())
+                        .limit(4)
                         .collect(Collectors.toCollection(ArrayList::new));
             }
 
