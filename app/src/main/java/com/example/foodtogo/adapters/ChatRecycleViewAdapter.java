@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodtogo.R;
@@ -87,11 +89,13 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter<ChatRecycleView
 
     public static class ChatHolder extends RecyclerView.ViewHolder {
         TextView productName,send_by,date;
+        ConstraintLayout scene;
 
         public ChatHolder(@NonNull View itemView) {
             super(itemView);
             productName = itemView.findViewById(R.id.product_name);
             date = itemView.findViewById(R.id.date);
+            scene = itemView.findViewById(R.id.bgr_scene);
         }
 
         public void setDetails(Chat chat, Long userId,boolean gift){
@@ -108,6 +112,15 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter<ChatRecycleView
                 text = "Vous avez contacter " +send_to.lastName + " " + send_to.firstName +" pour le produit suivant " + produit.title;
             }
 
+            if(produit.status.equals("CREATED")){
+                scene.setBackgroundColor(Color.parseColor("#188B7D"));
+            }else if(produit.status.equals("PENDING")){
+                scene.setBackgroundColor(Color.parseColor("#ffb347"));
+            }else if(produit.status.equals("DONE")){
+                scene.setBackgroundColor(Color.parseColor("#386641"));
+            }else if (produit.status.equals("CANCEL")){
+                scene.setBackgroundColor(Color.parseColor("#983b45"));
+            }
             productName.setText(text);
             date.setText(sdf.format(resultdate));
         }

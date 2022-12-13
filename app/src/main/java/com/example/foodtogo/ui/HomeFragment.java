@@ -55,7 +55,7 @@ public class HomeFragment extends MyFragment {
                              Bundle savedInstanceState) {
 
         try {
-            productList = new ArrayList<>(Product.listAll(Product.class));
+            productList = new ArrayList<>(Product.find(Product.class,"status = 'CREATED' "));
             if (getService().user_authenticated != null)
                 productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList, getService().user_authenticated.getId(),getService());
             else

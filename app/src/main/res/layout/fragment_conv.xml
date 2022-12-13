@@ -26,12 +26,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="575dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="32dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/accept"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.886" />
 
     <TextView
         android:id="@+id/textView_foodtogo"
@@ -49,13 +51,30 @@
         android:background="#e0e0e0"
         app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox" />
 
+    <Button
+        android:id="@+id/accept"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="524dp"
+        android:backgroundTint="@color/classic_green"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
+        app:layout_constraintVertical_bias="0.0" />
+
     <RelativeLayout
         android:id="@+id/layout_gchat_chatbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageRecycleView">
+        app:layout_constraintTop_toBottomOf="@+id/accept"
+        app:layout_constraintVertical_bias="0.908">
 
 
         <EditText
@@ -80,6 +99,7 @@
             android:background="?attr/selectableItemBackground"
             android:textColor="@color/black"
             app:srcCompat="@drawable/send" />
+
 
     </RelativeLayout>
 

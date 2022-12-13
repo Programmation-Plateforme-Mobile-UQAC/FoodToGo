@@ -18,6 +18,7 @@ public class User extends SugarRecord {
     public Boolean verificated;
     public long created_at;
     public long updated_at;
+    public Integer points;
 
     public User(){}
 
@@ -27,8 +28,10 @@ public class User extends SugarRecord {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.points = 0;
         this.created_at = System.currentTimeMillis();
         this.updated_at = System.currentTimeMillis();
+
     }
 
     public long getBirthday() {
@@ -52,6 +55,14 @@ public class User extends SugarRecord {
     public boolean onVerify(){
         if(this.email.isEmpty() == false && this.password.isEmpty() == false) return true;
         return false;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     public String getPassword() {

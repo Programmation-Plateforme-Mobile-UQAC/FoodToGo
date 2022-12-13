@@ -59,7 +59,7 @@ public class OrderDetailFragment extends MyFragment {
 
         try {
 
-            recommended = new ArrayList<>(Product.listAll(Product.class));
+            recommended = new ArrayList<>(Product.find(Product.class,"status = 'CREATED' "));
             Collections.shuffle(recommended);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 recommended = recommended.stream()
@@ -94,6 +94,7 @@ public class OrderDetailFragment extends MyFragment {
         }else{
             binding.productDetailOrderButton.setVisibility(view.VISIBLE);
         }
+        binding.productNameView.setText(product.getTitle());
         binding.productDetailDescriptionText.setText(product.getSummary());
         if (User.findById(User.class, product.user_id) != null)
             binding.productdetailByText.setText(User.findById(User.class, product.user_id).firstName);
