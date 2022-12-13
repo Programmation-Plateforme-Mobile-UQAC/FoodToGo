@@ -79,8 +79,7 @@ public class MessageRecycleViewAdapter extends RecyclerView.Adapter<MessageRecyc
             date.setText(sdf.format(resultdate));
             if(current_user.getId() == message.send_by){
                 user.setText("Moi");
-                content.setBackgroundColor(Color.parseColor("#7cb442"));
-
+                user.setTextColor(Color.parseColor("#7cb442"));
             }else{
                 user.setText(send.firstName);
             }

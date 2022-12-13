@@ -85,13 +85,19 @@ public class ChatMessageFragment extends MyFragment {
         EditText content;
         Button accept;
         RelativeLayout layout_gchat_chatbox;
+        TextView nameUser;
 
         button_send = view.findViewById(R.id.button_send);
         content = view.findViewById(R.id.content);
         accept = view.findViewById(R.id.accept);
         layout_gchat_chatbox = view.findViewById(R.id.layout_gchat_chatbox);
+        nameUser = view.findViewById(R.id.nameUser);
+
 
         Product product = Product.findById(Product.class,this.chat.product_id);
+        long id_send = getService().user_authenticated.getId() == chat.send_to ? chat.send_by : chat.send_to;
+        User user = User.findById(User.class,id_send);
+        nameUser.setText(user.firstName + " " + user.lastName);
 
         if(getService().user_authenticated.getId().equals(product.user_id)){
             accept.setVisibility(View.VISIBLE);
