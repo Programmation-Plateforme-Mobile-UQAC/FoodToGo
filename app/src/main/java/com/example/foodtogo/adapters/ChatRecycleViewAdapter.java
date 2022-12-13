@@ -96,15 +96,16 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter<ChatRecycleView
 
         public void setDetails(Chat chat, Long userId,boolean gift){
             User send = User.findById(User.class,chat.send_by);
+            User send_to = User.findById(User.class,chat.send_to);
             Product produit = Product.findById(Product.class,chat.product_id);
             SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
             Date resultdate = new Date(chat.created_at);
             String text = "";
 
-            if(gift){
+            if(!gift){
                 text = send.lastName + " " + send.firstName +" vous contacte pour le produit " + produit.title;
             }else{
-                text = send.lastName + " " + send.firstName +" vous contacte pour le produit " + produit.title + "que vous avez demander";
+                text = "Vous avez contacter " +send_to.lastName + " " + send_to.firstName +" pour le produit suivant " + produit.title;
             }
 
             productName.setText(text);
