@@ -15,13 +15,11 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="44dp"
-        android:layout_marginEnd="76dp"
         android:backgroundTint="#9C9C9C"
         android:backgroundTintMode="add"
         android:text="Connexion"
-        app:layout_constraintEnd_toStartOf="@+id/btn_this"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
