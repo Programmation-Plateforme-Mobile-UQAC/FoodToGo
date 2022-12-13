@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,11 +55,11 @@ public class HomeFragment extends MyFragment {
                              Bundle savedInstanceState) {
 
         try {
-            productList = new ArrayList<>(Product.listAll(Product.class));
+            productList = new ArrayList<>(Product.find(Product.class,"status = 'CREATED' "));
             if (getService().user_authenticated != null)
-                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList, getService().user_authenticated.getId());
+                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList, getService().user_authenticated.getId(),getService());
             else
-                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList);
+                productRecycleViewAdapter = new ProductRecycleViewAdapter(getContext(), productList,getService());
 
         }catch (Exception exception){
             exception.printStackTrace();
@@ -79,6 +80,7 @@ public class HomeFragment extends MyFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         manageCategoryDropDown();
+        searchListener();
 
         if (!productList.isEmpty()){
             RecyclerView recyclerView = binding.productRecycleView;
@@ -88,6 +90,33 @@ public class HomeFragment extends MyFragment {
 
         } else
             binding.orderViewStub.inflate();
+    }
+
+    private void searchListener(){
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return false;
+            }
+        });
+    }
+
+    private void filter(String text){
+        ArrayList<Product> filteredlist = new ArrayList<>();
+
+        for (Product item : productList) {
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+
+        productRecycleViewAdapter.setItems(filteredlist);
     }
 
     private void manageCategoryDropDown(){

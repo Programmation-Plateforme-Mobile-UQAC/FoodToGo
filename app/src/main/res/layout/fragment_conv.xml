@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
@@ -21,16 +23,19 @@
             app:popupTheme="@style/Theme.AppCompat.Light">
 
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecycleView"
-        android:layout_width="match_parent"
-        android:layout_height="575dp"
+        android:layout_width="409dp"
+        android:layout_height="448dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameUser"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -49,13 +54,30 @@
         android:background="#e0e0e0"
         app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox" />
 
+    <Button
+        android:id="@+id/accept"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/classic_green"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageRecycleView"
+        app:layout_constraintVertical_bias="0.384" />
+
     <RelativeLayout
         android:id="@+id/layout_gchat_chatbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageRecycleView">
+        app:layout_constraintTop_toBottomOf="@+id/accept"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <EditText
@@ -81,7 +103,20 @@
             android:textColor="@color/black"
             app:srcCompat="@drawable/send" />
 
+
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nameUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
+        app:layout_constraintVertical_bias="0.023" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

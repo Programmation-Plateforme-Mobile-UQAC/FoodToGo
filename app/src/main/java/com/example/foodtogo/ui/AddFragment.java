@@ -36,6 +36,7 @@ import com.example.foodtogo.databinding.ActivityAddOrderBinding;
 import com.example.foodtogo.databinding.ActivityLoginBinding;
 import com.example.foodtogo.databinding.ActivityMainBinding;
 import com.example.foodtogo.ui.authenticated.LoginFragment;
+import com.example.foodtogo.utils.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -138,30 +139,39 @@ public class AddFragment extends MyFragment {
         manageFoodTypeDropDown();
 
         binding.addPostButton.setOnClickListener(view1 -> {
-            Bitmap photoBitmap;
-
-            try {
-                photoBitmap = ((BitmapDrawable)binding.imageButton2.getDrawable()).getBitmap();
-            } catch (Exception e){
-                photoBitmap = null;
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            User user = getService().user_authenticated;
+            List<Product> productList = Product.find(Product.class,"userid = ? AND status != 'DONE' ",user.getId().toString());
+            if(productList.size() >=3){
+                Toast.makeText(getContext(), "Vous ne pouvez avoir que 3 annonce en cours", Toast.LENGTH_SHORT).show();
+            }else{
+                Bitmap photoBitmap;
                 try {
-                    order = new Product(getService().user_authenticated.getId(), chosenCategory.getId(),
-                            binding.namePostEdit.getText().toString()
-                            ,binding.productDescriptionEdit.getText().toString(),
-                            Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
-                    order.save();
-                    Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Echec de l'ajout du produit", Toast.LENGTH_SHORT).show();
+                    photoBitmap = ((BitmapDrawable)binding.imageButton2.getDrawable()).getBitmap();
+                } catch (Exception e){
+                    photoBitmap = null;
                 }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    try {
+                        order = new Product(getService().user_authenticated.getId(), chosenCategory.getId(),
+                                binding.namePostEdit.getText().toString()
+                                ,binding.productDescriptionEdit.getText().toString(),
+                                Base64.getEncoder().encodeToString(bitmapToByteArray(photoBitmap)), binding.expirationDateEdit.getText().toString());
+                        order.save();
+                        Toast.makeText(getContext(), "Produit ajouté", Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(getContext(), "Echec de l'ajout du produit", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                if (mainBinding != null)
+                    mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
+                else
+                    Util.navigateTo(view, new HomeFragment());
             }
 
-            mainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
         });
 
         binding.imageButton2.setOnClickListener(viewButton -> {

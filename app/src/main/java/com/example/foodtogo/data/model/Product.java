@@ -15,7 +15,7 @@ public class Product extends SugarRecord {
     public long productRoomId;
     public long user_id;
     public long category_id;
-    private long buy_by;
+    public long buy_by;
     public String title;
     public String summary;
     public String image;
@@ -24,6 +24,10 @@ public class Product extends SugarRecord {
     private long updated_at;
     public String status;
     public boolean cancel_by_order;
+    public Float rating;
+    public String code;
+    public Boolean reclame_code_creator;
+    public Boolean reclame_code_buy;
 
     public Product(){}
 
@@ -54,7 +58,11 @@ public class Product extends SugarRecord {
         this.created_at = System.currentTimeMillis();
         this.updated_at = System.currentTimeMillis();
         this.cancel_by_order = false;
-        this.status = "Created";
+        this.status = "CREATED";
+        this.rating = 0f;
+        this.code = "";
+        this.reclame_code_creator = false;
+        this.reclame_code_buy = false;
     }
 
     public static Long convertToLong(UUID id){
@@ -171,5 +179,29 @@ public class Product extends SugarRecord {
 
     public void setCancel_by_order(boolean cancel_by_order) {
         this.cancel_by_order = cancel_by_order;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public Boolean getReclame_code_creator() {
+        return reclame_code_creator;
+    }
+
+    public void setReclame_code_creator(Boolean reclame_code_creator) {
+        this.reclame_code_creator = reclame_code_creator;
+    }
+
+    public Boolean getReclame_code_buy() {
+        return reclame_code_buy;
+    }
+
+    public void setReclame_code_buy(Boolean reclame_code_buy) {
+        this.reclame_code_buy = reclame_code_buy;
     }
 }

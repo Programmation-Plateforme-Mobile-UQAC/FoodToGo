@@ -25,7 +25,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <TextView
-                android:text="Saisir le code pour recuperer vos points"
+                android:text="Mobile"
                 android:layout_marginStart="10dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -36,29 +36,17 @@
 
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:padding="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/textCode"
-                android:layout_width="189dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/get_coins"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ajouter" />
 
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="15dp"
+            android:text="+33 0607080910"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
 
